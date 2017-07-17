@@ -1,0 +1,1610 @@
+#+TITLE:       Blog
+#+AUTHOR:      Mario Román
+#+EMAIL:       mromang08@gmail.com
+#+OPTIONS:     toc:nil
+
+* Aprendiendo emacs
+:PROPERTIES:
+:TITLE:    Aprendiendo emacs
+:HUGO_TAGS: emacs
+:HUGO_TOPICS: emacs
+:HUGO_FILE: post/aprendiendoemacs.md
+:HUGO_DATE: [2016-09-19 Mon 14:47]
+:END:
+
+** Emacs
+
+*[[https://www.gnu.org/software/emacs/][Emacs]]* es un editor de texto construido sobre un intérprete del lenguaje
+*[[https://es.wikipedia.org/wiki/Emacs_Lisp][Elisp]]* para hacerlo
+extensible. Cada acción del editor constituye un comando sobre el
+intérprete, por lo que podemos reescribir sus comandos o crear nuevos
+comandos simplemente programando sobre el intérprete.
+
+[[https://github.com/libreim/blog/raw/post-emacs/images/emacs.png]]
+/Emacs editando este mismo artículo en Markdown/
+
+Emacs sirve como IDE para la mayoría de lenguajes de programación y como
+editor para programación literaria y ciencia reproducible; se integra
+con git y con el sistema de archivos y tiene extensiones disponibles
+para usarse como aplicación para organizar listas de tareas, leer el
+correo o servir como hoja de cálculo.
+
+#+BEGIN_QUOTE
+  I use Emacs, which might be thought of as a thermonuclear word
+  processor.
+
+  -- *Neal Stephenson*, /In the Beginning... was the command line./
+#+END_QUOTE
+
+En este artículo haré una referencia breve a todo lo que me ha ido
+sirviendo para aprender Emacs mientras enlazo a fuentes que tratan cada
+uno de los temas más extensamente. Como recursos generales para aprender
+Emacs, puedo recomendar:
+
+-  [[https://www.youtube.com/playlist?list=PLxj9UAX4Em-IiOfvF2Qs742LxEK4owSkr][*.Emacs Tutorials*]] de /jekor/, explican todo lo necesario para aprender
+   Emacs en 10 videotutoriales que pueden seguirse progresivamente.
+-  [[https://www.youtube.com/playlist?list=PL8tzorAO7s0he-pp7Y_JDl7-Kz2Qlr_Pj][*Emacs Meetups*]] de Thoughtbot, que profundizan sobre temas concretos de
+   uso de Emacs.
+-  [[http://emacsrocks.com/][*Emacs Rocks*]], vídeos breves sobre casos
+   concretos de uso de Emacs.
+-  [[https://www.emacswiki.org/emacs/SiteMap][*Emacs wiki*]], una wiki
+   que documenta todo lo relacionado con Emacs.
+-  [[http://sachachua.com/blog/category/geek/emacs/][*sachachua.com*]],
+   donde se hace referencia periódicamente a noticias de Emacs, y tiene
+   escritas hojas de referencia de atajos de teclado de Emacs.
+-  [[http://cestlaz.github.io/stories/emacs/][*C'est la z*]], otro blog
+   en el que se tratan temas relacionados con Emacs.
+-  [[https://www.gnu.org/software/emacs/manual/][*GNU Emacs*]], la
+   documentación oficial de Emacs.
+-  [[https://elbauldelprogramador.com/chuleta-atajos-teclado-emacs/][*El baúl del programador*]], que ha empeazado una recopilación colaborativa de
+   los comandos y paquetes más útiles para Emacs.
+
+#+BEGIN_HTML
+  <!--more-->
+#+END_HTML
+
+*** Instalación
+
+Emacs puede encontrarse en la mayoría de gestores de paquetes, pero
+puede no estar en su versión más actualizada.
+
+#+BEGIN_EXAMPLE
+    sudo apt install emacs
+#+END_EXAMPLE
+
+Para escribir este artículo estoy usando =GNU Emacs 25.1=, pero la
+última versión estable es la *24.5*. La versión estable actual puede
+descargarse desde [[https://www.gnu.org/software/emacs/][GNU]].
+
+** Atajos de teclado
+En Emacs se usa una [[https://www.emacswiki.org/emacs/EmacsKeyNotation][notación específica]] para escribir un atajos de teclado. 
+La mayoría de
+documentación que consultes usará =C-x= en lugar de =Control+x=; usará
+=C-x C-s= para indicar que debes dejar pulsado =Control= mientras pulsas
+=x= y =s=; y por último, usará =M-x=, donde la =M= se referirá a la
+tecla =Meta=. La tecla =Meta= en Emacs se refiere normalmente a dos
+opciones equivalentes, o bien pulsar =alt izq.= mientras se pulsa =x=, o
+pulsar =Esc= y luego pulsar =x=. En resumen:
+
+|---------+-----------------------------------------------+-----------------|
+| Atajo   | Descripción                                   | Comando         |
+|---------+-----------------------------------------------+-----------------|
+| C-n     | Mantener control pulsado mientras se pulsa n  | Next line       |
+| C-x C-s | Mantener control pulsado pulsando x y luego s | Save file       |
+| M-x     | Mantener alt o pulsar esc para luego pulsar x | Execute Command |
+| RET     | Salto de línea, pulsar enter antes de seguir  |                 |
+|---------+-----------------------------------------------+-----------------|
+
+Usar atajos de teclado facilita mucho usar Emacs rápidamente después del
+tiempo de aprendizaje.  [1]
+
+Cuando abras el programa por primera vez, te ofrecerá seguir un tutorial
+de Emacs escrito en Emacs. El tutorial es muy útil para aprender a
+moverse dentro de Emacs, pero la mayoría de lo que cuenta no es
+especialmente fácil de aprender de una sola vez. Lo más chocante para un
+usuario nuevo puede ser el sistema de copiar-pegar; que de forma muy
+simplificada se resume en:  [2]
+
+-  =M-w= copia.
+-  =C-w= corta.
+-  =C-y= pega.
+
+Pero si no te convence, puedes usar [[https://www.emacswiki.org/emacs/CuaMode][CUA Mode]], que te permite
+volver a usar =C-c= y =C-v= para copiar y pegar. Otros comandos útiles
+de aprender antes de empezar con nada más son =C-x C-s= para guardar y
+=C-x C-f= para abrir un archivo.
+
+*** Documentación
+
+Emacs es un editor autodocumentado, es decir, la documentación del
+editor puede consultarse dentro del propio programa. Para llamar a la
+ayuda se puede pulsar =C-h ?=, que nos dejará elegir si necesitamos
+ayuda sobre comandos, atajos de teclados, variables, licencias, etc.
+Especialmente útiles son:
+
+-  =C-h c <atajo de teclado>= nos da el nombre de la función que se
+   ejecuta al pulsar esas teclas.
+-  =C-h f <nombre de función>= documenta la función.
+
+*** Buffers y ventanas
+
+Cada vez que abrimos un archivo, o pedimos un apartado de documentación,
+o abrimos la configuración, se abre un nuevo buffer. Un
+[[https://www.emacswiki.org/emacs/Buffer][buffer]] es el equivalente a un documento o un espacio de trabajo en otros 
+editores. Podemos movernos
+entre los buffers actualmente abiertos pulsando =C-x <left>= o
+=C-x <right>=; y podemos mostrar la lista de buffers actualmente
+abiertos con =C-x C-b= (¡en un nuevo buffer!).
+
+Además de los buffers que tengamos actualmente abiertos, tenemos
+ventanas que los muestran. Podemos partir la pantalla de Emacs en varias
+ventanas con =C-x 2= y =C-x 3=, que la parten horizontal y verticalmente
+respectivamente. Para volver a quedarnos sólo con la ventana en la que
+está el cursor, podemos pulsar =C-x 1=; y para cambiar de ventana sobre
+la que actúa el cursor podemos usar =C-x o=.
+
+*** Modos de Emacs
+
+El comportamiento de Emacs sobre cada buffer que abra será distinto
+dependiendo normalmente de la extensión del archivo. Esto le permite
+colorear de manera distinta distintas sintaxis, o tener comportamientos
+específicos (indentación, atajos de teclado, formateo) cuando está
+editando cada lenguaje.
+
+Cada una de estas formas de edición se llama [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Major-Modes.html][*modo*]],
+y el *modo* actual aparece resaltado entre paréntesis en la barra
+inferior de Emacs. El modo básico es =Fundamental=, pero para cada
+propósito existen modos específicos. Para casi todos los lenguajes de
+programación tendremos un modo. Existen, por ejemplo,
+[[https://www.emacswiki.org/emacs/RubyMode][=Ruby-mode=]], [[https://www.emacswiki.org/emacs?action=browse;oldid=PythonMode;id=PythonProgrammingInEmacs#toc2][=Python-mode=]] o [[https://www.emacswiki.org/emacs/CcMode][=CC-mode=]].
+
+Además de los /modos mayores/ de los que hemos hablado hasta ahora,
+existen /modos menores/ que son opcionales y complementan a los modos
+mayores. Por ejemplo, mientras escribo este artículo estoy usando
+[[https://www.emacswiki.org/emacs/MarkdownMode][=Markdown=]] como modo mayor y =ARev= ([[https://www.gnu.org/software/emacs/manual/html_node/emacs/Reverting.html][Auto-revert mode]]) como modo menor.
+
+** Personalización
+
+Prácticamente todos los parámetros que uses en Emacs pueden ser
+ajustados a tu necesidad. Desde los atajos de teclado hasta el tema de
+color y fuentes que usa el editor.
+
+La forma más básica de editar todas estas configuraciones es
+=M-x customize group=, que accede a un menú en el que se pueden
+modificar todas ellas. Todos los cambios que aquí se hagan se guardarán
+en un archivo =.emacs= (o =init.el=, en las versiones nuevas de Emacs).
+Este archivo es la otra forma de configurar Emacs; el archivo de inicio
+=.emacs= contiene código en Elisp que se ejecutará al iniciar el editor
+y podemos incluir allí todo lo que queramos configurar. Algunos
+paquetes, por ejemplo, necesitarán configuración adicional que habrá que
+incluir en este archivo.
+
+[[https://youtu.be/mMcc0IF1hV0][*.Emacs #2 - Customizations and themes* - /jekor/]]
+
+** Sistemas de paquetes
+   :PROPERTIES:
+   :CUSTOM_ID: sistemas-de-paquetes
+   :END:
+
+*** Melpa
+    :PROPERTIES:
+    :CUSTOM_ID: melpa
+    :END:
+
+Es conveniente añadir un repositorio más grande que el que trae GNU por
+defecto, y [[https://melpa.org/#/][MELPA]] es uno de los repositorios de
+paquetes de Emacs más grandes y actualizados. El repositorio de MELPA se
+añade desde =M-x customize-group RET package=. Dentro de la pestaña de
+repositorios puede insertarse la dirección de MELPA:
+
+#+BEGIN_EXAMPLE
+     Archive name: melpa-stable
+     URL or directory name: https://stable.melpa.org/packages/
+#+END_EXAMPLE
+
+Para salir de cualquiera de las pantallas de personalización se usa =q=.
+
+Otra forma de conseguir este mismo efecto es añadirlo directamente a
+nuestro archivo de configuración (=.emacs=/=init.el=), como se indica en
+las [[https://melpa.org/packages/][instrucciones de instalación]] del
+repositorio.
+
+*** Paquetes
+    :PROPERTIES:
+    :CUSTOM_ID: paquetes
+    :END:
+
+Podemos listar los paquetes que podemos instalar usado
+=M-x list-packages= y podemos buscar entre los paquetes pulsando varias
+veces el comando =C-s=. Si pulsamos =i= al lado de uno de ellos se
+marcará para instalar y al pulsar =x= se ejecutará la instalación de
+todos los paquetes marcados.
+
+[[https://youtu.be/Cf6tRBPbWKs][*.Emacs #3 - Installing packages and
+extensions* - /jekor/]]
+
+** Paquetes útiles
+   :PROPERTIES:
+   :CUSTOM_ID: paquetes-útiles
+   :END:
+
+*** Dired
+    :PROPERTIES:
+    :CUSTOM_ID: dired
+    :END:
+
+Dired viene instalado por defecto con Emacs y permite navegar la
+estructura de directorios del sistema operativo. Podemos empezar a
+navegarla usando =M-x dired= y pulsando =RET= cada vez que queramos
+abrir un archivo o una carpeta.
+
+Podemos además afectar a los archivos. Por ejemplo, si queremos eliminar
+algunos archivos, podemos marcarlos con =d= y eliminarlos
+definitivamente con =x=.
+
+[[https://youtu.be/7jZdul2fC94][*.Emacs #4 - Exploring the filesystem* -
+/jekor/]]
+
+*** org-mode
+    :PROPERTIES:
+    :CUSTOM_ID: org-mode
+    :END:
+
+*org-mode* es un modo de Emacs que se creó originalmente para gestionar
+listas de tareas, agendas y calendarios; pero además, contiene en su
+interior un completo lenguaje de marcado. Permite exportar documentos a
+una gran variedad de formatos (pdf, html, latex o markdown) e incluir
+internamente trozos de código y ejecutarlos. Además, tiene un sistema de
+tablas en texto plano capaz de sustituir la hoja de cálculo para tareas
+sencillas. Por todo esto, puede ser usado en tareas como la ciencia
+reproducible o la programación literaria cuando Latex es demasiado
+complejo, ayudando además a manejar la bibliografía y los enlaces tanto
+externos como entre archivos.
+
+[[https://youtu.be/SzA2YODtgK4][*Getting started with org-mode* - /Harry Schwartz/]]
+
+Especialmente útil para matemáticas es la
+[[http://orgmode.org/worg/org-tutorials/org-latex-preview.html][previsualización de Latex]] y el poder incluir los paquetes de la
+[[ftp://ftp.ams.org/pub/tex/doc/amsmath/amsldoc.pdf][AMS]] para marcar teoremas o definiciones.
+
+[[https://github.com/libreim/blog/raw/post-emacs/images/org-math.png]]
+/Apuntes de matemáticas en org-mode/
+
+*** magit
+    :PROPERTIES:
+    :CUSTOM_ID: magit
+    :END:
+
+*magit* permite integrar Emacs con *git* fácilmente para incluir los
+commits desde dentro del mismo editor. Usando =magit-status= llegamos a
+una pantalla en la que podemos elegir qué ficheros añadir al commit con
+=s=  [3] y visualizar las diferencias con el commit anterior usando
+=tab=; ejecutar el commit con =c c=, que nos mostrará el buffer con el
+mensaje de commit y por último usar =C-c C-c= para enviarlo. El push y
+pull los haremos desde =magit-status= con =P u= y =F u=,
+respectivamente.
+
+Es útil asignar un atajo de teclado al comando =magit-status=, que es el
+que muestra la ventana desde la que controlamos el añadir y hacer commit
+de ficheros. Por ejemplo, podemos fijarlo en =f5= añadiendo a nuestro
+archivo de configuración:
+
+#+BEGIN_SRC lisp
+    (global-set-key (kbd "<f5>") 'magit-status)
+#+END_SRC
+
+** Macros de teclado
+   :PROPERTIES:
+   :CUSTOM_ID: macros-de-teclado
+   :END:
+
+Las macros de teclado nos dejan grabar una secuencia de acciones y
+volver a repetirla tantas veces como sea necesaria. Se puede empezar a
+grabar con =f3= y terminar la grabación y repetirla tantas veces como
+sea necesario con =f4=.
+
+[[https://youtu.be/JfZ9fCHzkJw][*.Emacs #9 - Keyboard macros* -
+/jekor/]]
+
+** Elisp
+   :PROPERTIES:
+   :CUSTOM_ID: elisp
+   :END:
+
+[[https://www.gnu.org/software/emacs/manual/html_node/elisp/][Emacs Lisp]], o Elisp, es un lenguaje de programación diseñado específicamente
+para escribir un editor de texto. Facilita el tratamiento de texto y el
+manejo de archivos y buffers.
+
+Podemos escribir scripts en Elisp que se encarguen de tareas repetitivas
+en nuestro editor de texto y asignarlas a atajos de teclado o ampliarlo
+con más funcionalidad. Un tutorial básico sobre Elisp es
+[[http://emacs-doctor.com/learn-emacs-lisp-in-15-minutes.html][Learn Emacs Lisp in 15 minutes]].
+
+** Notas
+[1] Realmente solo puedo decir que a mí me funciona y que en general los
+    atajos de teclado parecen ser [[http://ux.stackexchange.com/a/30749][mejores que usar el ratón]].
+
+[2] El [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Killing.html#Killing][sistema]] que Emacs usa para esto es bastante más sofisticado.
+
+[3] De hecho, podemos seleccionar qué párrafos dentro de un fichero
+    queremos añadir al commit.
+* Capturando links en org-mode
+:PROPERTIES:
+:TITLE:    Capturando links en org-mode
+:HUGO_TAGS: emacs
+:HUGO_TOPICS: emacs
+:HUGO_FILE: post/capturelinks.md
+:HUGO_DATE: [2017-03-23 Thu 14:54]
+:END:
+
+** Capturando links
+El objetivo de este post es describir el proceso que uso para capturar links
+desde Firefox y almacenarlos en un archivo de org-mode, que puede leerse luego
+desde el propio navegador.
+
+** Org-capture
+La primera parte será activar =org-capture= y =org-protocol= en Emacs. [[https://www.gnu.org/software/emacs/manual/html_node/org/Capture.html#Capture][org-capture]]
+puede ser usado también para escribir pequeñas ideas y almacenarlas en ficheros org
+rápidamente; pero, en este caso, lo usaremos sólo para recibir el link desde Firefox.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'org-protocol)
+#+END_SRC
+
+Lo primero que debemos hacer es definir la plantilla que queremos usar para capturar
+los links. La sintaxis usada se explica en la [[https://www.gnu.org/software/emacs/manual/html_node/org/Template-expansion.html#Template-expansion][documentación]] de org-mode, así como
+las opciones que usa después:
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-capture-templates
+	(quote (
+		("x" "org-protocol" entry (file "~/links.org")
+		 "** %c %?" :kill-buffer t :prepend t))))
+#+END_SRC
+
+En este caso, guardará los links en un archivo llamado =links.org= en el directorio
+=home=. Pueden añadirse [[https://www.gnu.org/software/emacs/manual/html_node/org/Template-elements.html#Template-elements][opciones]] para explicitar en qué punto exacto del archivo
+queremos insertar el link una vez lo capturemos.
+
+** Extensión de firefox
+El uso de =org-protocol= desde Firefox puede gestionarse más detalladamente usando
+[[http://orgmode.org/worg/org-contrib/org-protocol.html#sec-4][marcadores]] que activen la captura. En nuestro caso, como sólo necesitamos la configuración
+básica, podemos ahorrarnos este trabajo y dejárselo a la extensión [[http://chadok.info/firefox-org-capture/][org-capture for Firefox]].
+
+La extensión nos deja elegir en sus opciones si queremos que use una nueva ventana (me
+parece lo más conveniente y además veremos cómo controlarla luego con i3); la letra
+asignada a la plantilla (en nuestro caso hemos usado la =x= en la configuración
+anterior); y el atajo de teclado para activarla, que por defecto es =Ctrl-Alt-r=.
+
+Una vez activemos la extensión, podremos capturar enlaces pulsando el atajo.
+
+** Cerrando ventanas
+Un problema menor al usar esta extensión es que crea ventanas de Emacs que no cierra
+al terminar. Otro problema es que suele crear también un buffer inicial al lado de nuestro
+buffer de captura. Podemos usar *hooks* para forzarlo a corregir ese comportamiento:
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'org-capture-mode-hook 'delete-other-windows)
+  (add-hook 'org-capture-after-finalize-hook 'delete-frame)
+#+END_SRC
+
+** Integrándolo en i3
+Para los usuarios de i3, puede ser útil poder controlar dónde y cómo se crea la ventana
+de captura de Emacs. Un ejemplo de configuración es la siguiente, que coloca la ventana
+como flotante y en el centro de la pantalla; como si fuera un popup:
+
+#+BEGIN_SRC bash
+for_window [class="Emacs" title="CAPTURE"] floating enable
+for_window [class="Emacs" title="CAPTURE"] resize set 1880 480
+for_window [class="Emacs" title="CAPTURE"] move position center
+#+END_SRC
+
+** Mostrando los links en el navegador
+Para que además los links se muestren en el navegador, pueden usarse también *hooks* que
+se activen al guardado para exportar a HTML. En este post de [[https://rafaelleru.github.io/2017/01/22/to_read_list_emacs/][@rafaelleru]] se explica el
+proceso en detalle.
+
+** Un detalle sin solucionar
+En la plantilla de captura, me gustaría poder usar además =%^g=, que crea un pequeño
+diálogo donde insertar tags al link que se está guardando. El problema con esto es que,
+hasta que ese diálogo no ha terminado, no se ejecutan los hooks y el frame no se hace
+único (ni se reposiciona en i3).
+
+* Distribuciones discretas con mónadas
+:PROPERTIES:
+:TITLE:    Distribuciones discretas con mónadas
+:HUGO_TAGS: haskell
+:HUGO_TOPICS: haskell
+:HUGO_FILE: post/distribucionesmonadas.md
+:HUGO_DATE: [2016-12-10 Sat 14:59]
+:END:
+** El modelo
+Como parte de una serie de ejemplos sobre uso de mónadas, he escrito un
+poco de código para modelar distribuciones discretas usando mónadas.
+
+Por un lado, usa un [[https://math.dartmouth.edu/archive/m20f11/public_html/RANDOMNESS_LCG.pdf][generador congruencial lineal]] para generar números
+aleatorios; y por otro, usa la mónada [[https://wiki.haskell.org/State_Monad][State]] para pasar una semilla aleatoria
+de una función a otra que me permita seguir generado números aleatorios.
+
+Por último, aporta un método que deriva [[http://www.zvon.org/other/haskell/Outputprelude/Show_c.html][Show]] para probar las distribuciones
+y dibujar un histograma de cualquiera de ella.
+
+** Componiendo distribuciones
+Lo más útil de esta idea para mí ha sido el poder generar unas distribuciones
+a partir de otras. La primera que genero es un dado de =n= caras usando la
+semilla. Aquí es donde se implementa el generador congruencial:
+
+#+BEGIN_SRC haskell
+  dice :: Int -> Distribution Int
+  dice n = state (\s -> (s `mod` n + 1, 16807*s `mod` 2147483647))
+#+END_SRC
+
+Que funciona como una distribución uniforme:
+
+#+BEGIN_SRC
+>>> dice 6
+
+1:	 ################
+2:	 ################
+3:	 ################
+4:	 ################
+5:	 ################
+6:	 ################
+#+END_SRC
+
+Pero desde ella puedo generar fácilmente otras usando funciones que compongan
+distribuciones. Un ejemplo es usar =(⊕) = liftM2 (+)= para sumar dados:
+
+#+BEGIN_SRC 
+>>> dice 6 ⊕ dice 6
+
+2:	 #####
+3:	 ##########
+4:	 ###############
+5:	 ####################
+6:	 ##########################
+7:	 ##############################
+8:	 #########################
+9:	 ####################
+10:	 ###############
+11:	 ##########
+12:	 #####
+#+END_SRC
+
+** Otras distribuciones
+Y puedo crear otras distribuciones similares a partir de ellas, como la
+distribución de *Bernoulli* y la *Binomial* usando funciones para composición
+de mónadas:
+
+#+BEGIN_SRC haskell
+  bernoulli :: Double -> Distribution Int
+  bernoulli p = do
+    sample <- dice 1000000
+    if (fromIntegral sample / 1000000.0 < p)
+      then return 1
+      else return 0
+
+  binomial :: Int -> Double -> Distribution Int
+  binomial k p = sum <$> replicateM k (bernoulli p)
+#+END_SRC
+
+Lo que me gusta de este código es que dejamos a la estructura de mónada encargarse
+internamente de el paso de la semilla de aleatoriedad y podemos componer distribuciones
+más simples para crear distribuciones más complejas.
+
+** El código
+El código completo se presenta aquí. Es un pequeño código que dejé de ejemplo
+pero que seguramente pueda mejorarse bastante; lo dejo aquí como guión para esta 
+idea:
+
+#+HTML: <script src="https://gist.github.com/M42/7d9d2ecf174bad73804e67fd5cb8de72.js"></script>
+* Inducción estructural
+:PROPERTIES:
+:TITLE:    Inducción estructural
+:HUGO_TAGS: logic
+:HUGO_TOPICS: logic
+:HUGO_FILE: post/induccionestructural.md
+:HUGO_DATE: [2015-03-14 Sat 15:02]
+:END:
+
+Normalmente aplicamos inducción sobre los números naturales, y cuando
+necesitamos aplicar inducción en otro contexto lo hacemos corresponder con los 
+números naturales. Por ejemplo, si queremos demostrar una propiedad sobre los
+árboles binarios, la demostraríamos por inducción sobre la altura del
+árbol. Pero el proceso de llevar todo a los naturales puede ser
+incómodo, tedioso y puede complicar la demostración innecesariamente. En
+este post vamos a desarrollar una forma de ampliar la inducción a la
+estructura de los tipos de datos para simplificar todas esas
+demostraciones.
+
+** Conjuntos bien fundados
+
+Vamos a definir las relaciones bien fundadas, que nos permitirán definir
+una inducción generalizada. [1]
+
+-  *Relación bien fundada:* una relación en un conjunto de elementos
+   es bien fundada si todo subconjunto no vacío tiene un elemento
+   minimal. Dado un orden parcial, es bien fundado si todo subconjunto
+   no vacío tiene un elemento tal que ninguno es menor que él.
+
+Y podemos realizar inducción sobre cualquier conjunto con una relación
+bien fundada.
+
+-  *Inducción noetheriana:* sea $X$ un conjunto bien fundado con
+   $A \subset X$. Si se cumple:
+
+   \[ (y < x \Rightarrow y \in A) \Rightarrow x \in A \]
+
+   Entonces $A = X$.
+
+** Inducción sobre tipos
+Ahora vamos a aplicar esto a teoría de tipos. Sea un tipo con sus
+constructores. Para todas las instancias constructibles del tipo (es decir,
+aquellas que pueden
+generarse en un número finito de pasos desde sus constructores),
+definimos un orden parcial:
+
+-  *Orden constructivo:* para dos instancias del tipo: $a,b::A$,
+   $b$ se construye con $a$ si el constructor de $b$ toma a $a$
+   como argumento. La clausura transitiva de esta relación forma un
+   orden parcial:
+   \[ a \leq b \Rightarrow a \mbox{ se usa en la construcción de } b \]
+
+Y ahora tenemos una inducción sobre los constructores de los tipos, que
+describimos ahora.
+
+-  *Inducción sobre tipos*: sea un tipo $A$ con constructores y sea
+   $P :: A \rightarrow Bool$ una propiedad. Siendo
+   $a_1, a_2 \dots a_i :: A$ argumentos del constructor, si se cumple
+   la condición de inducción para cada constructor $C_i$:
+   \[P(a_1) \wedge P(a_2) \wedge \dots P(a_i) \Rightarrow P(C_i(a_1,a_2,\dots,b_0,b_1\dots))\]
+
+Entonces $a::A \Rightarrow P(a)$
+
+** Ejemplo 1: Naturales
+Nuestro primer ejemplo va a ser obtener la inducción sobre los naturales
+como caso particular. Damos una definición de los naturales en lenguaje
+Haskell, con los axiomas de Peano, un natural es 0 o el siguiente de un
+natural:
+
+#+BEGIN_SRC haskell
+    data Nat = O
+             | S Nat
+#+END_SRC
+
+Que equivale a la definición en Coq:
+
+#+BEGIN_EXAMPLE
+    Inductive nat : Type :=
+      | O : nat
+      | S : nat -> nat
+#+END_EXAMPLE
+
+Es decir, si lo demostramos para =0= y para =S n= sabiéndolo para =n=,
+lo hemos demostrado para todos los naturales.
+
+** Ejemplo 2: Árboles binarios
+Ahora vamos a intentar el ejemplo que motivó esta búsqueda. Definimos un
+árbol binario como un árbol vacío o como un nodo del que surgen dos
+árboles binarios, en Haskell:
+
+#+BEGIN_SRC haskell
+    data Tree a = Empty
+                | Node a (Tree a) (Tree a)
+#+END_SRC
+
+Que equivale a la definición en Coq:
+
+#+BEGIN_EXAMPLE
+    Inductive tree (X:Type) : Type :=
+      | nilt : tree X
+      | node : X -> tree X -> tree X -> tree X.
+#+END_EXAMPLE
+
+Es decir, si demostramos una propiedad para el árbol vacío y para un
+árbol sabiendo que la cumplen sus subárboles derecho e izquierdo, la
+hemos demostrado para todos los árboles binarios.
+
+En el repositorio [[https://github.com/M42/recorridosArboles][M42/recorridosArboles]] hay
+varias demostraciones por inducción sobre árboles binarios, explicados
+en lenguaje natural y demostrados luego sobre el asistente de
+demostraciones Coq.
+
+[1] Post sobre generalizaciones de la inducción [[http://math.blogoverflow.com/2015/03/10/when-can-we-do-induction/][en Stack Overflow]].
+
+* Matemáticas en emacs
+:PROPERTIES:
+:TITLE:    Matemáticas en emacs
+:HUGO_TAGS: emacs
+:HUGO_TOPICS: emacs
+:HUGO_FILE: post/matematicasemacs.md
+:HUGO_DATE: [2016-09-26 Mon 15:07]
+:END:
+
+** Apuntes a ordenador
+   Tomar apuntes de matemáticas con el ordenador es una tarea difícil por la
+   notación (símbolos, letras en otros alfabetos, índices...)
+   y la velocidad necesaria. Además, 
+   los diagramas, dibujos, flechas o anotaciones no textuales que
+   tomamos parecen imposibles de transcribir fielmente a un fichero.
+
+   *Latex* permite notación matemática pero no facilita la velocidad (al fin y
+   al cabo, Latex estaría pensado para edición de libros, no para tomar apuntes).
+   *Markdown* simplifica mucho el poder escribir, pero pierde mucha 
+   potencia respecto a Latex. Así que mi solución es usar 
+   Emacs con *org-mode*.
+
+** Ventajas de org-mode
+   *org-mode* tiene internamente un lenguaje de marcado similar al de markdown, con
+   la ventaja para el usuario de Emacs de que está adaptado precisamente para 
+   Emacs. Permite escribir fórmulas en Latex y exportar luego a =.tex= y =.pdf=, 
+   controlando las opciones de Latex. 
+
+   Una fórmula en Latex puede escribirse directamente en *org-mode* incluyéndola
+   entre =\( ... \)=, si está dentro de una línea de texto (como en \(i \ast x = x\)); 
+   o entre =\[ ... \]=, cuando queremos que se muestre aparte del texto. Ejemplo:
+
+   \[ \sum_{n=0}^\infty \frac{1}{2^n} \]
+
+   Y cuando terminamos de escribirla podemos [[http://orgmode.org/worg/org-tutorials/org-latex-preview.html][previsualizarla]] directamente con
+   =C-c C-x C-l=. Así vamos comprobando que hemos escrito las fórmulas 
+   correctamente a costa de acercarnos a un editor [[https://es.wikipedia.org/wiki/WYSIWYG][WYSIWYG]].
+ 
+** Zoom
+   Un problema menor (y quizá sólo mío) al configurar todo esto fue que las fórmulas 
+   previsualizadas me parecían demasiado pequeñas. Aunque estén en proporción con el texto, cuesta
+   más leerlas; y cuando aumentamos el tamaño del texto con =C-x C-+=, las 
+   fórmulas no se amplían con él. Para conseguir que lo hagan hay que incluir otro
+   pequeño truco, mezcla de dos respuestas de [[http://emacs.stackexchange.com/questions/3387/how-to-enlarge-latex-fragments-in-org-mode-at-the-same-time-as-the-buffer-text][thisirs y Mark]] en Stack Overflow:
+
+#+BEGIN_SRC lisp
+  (defun update-org-latex-fragment-scale ()
+    (let ((text-scale-factor
+           (expt text-scale-mode-step text-scale-mode-amount)))
+      (plist-put org-format-latex-options
+                 :scale (* 1.2 text-scale-factor)))
+  )
+  (add-hook
+   'text-scale-mode-hook
+   'update-org-latex-fragment-scale)
+#+END_SRC
+
+** Aumentando la velocidad de escritura
+   Mi objetivo principal con todo esto era escribir matemáticas más rápidamente, así
+   que [[http://emacs.stackexchange.com/questions/26322/math-autocompletion-in-org-mode][pregunté sobre autocompletado]] y concluí en usar =latex-math-mode=. Esto 
+   permite incluir comandos de Latex con atajos de teclado. En su configuración
+   original usa el caracter =`= para acceder a ellos, así que =`-a= escribe =\alpha=.
+   Yo he decidido cambiar el acento invertido, que ya cuesta dos pulsaciones en el
+   teclado en español, por la =ç=, que no la suelo usar. Además de los que incluye
+   el paquete por defecto, se pueden escribir atajos propios.
+
+   Por otro lado, empecé a usar *yasnippets* en Emacs. Son cómodos, fáciles de programar,
+   y me permiten simplificar tareas como escribir diagramas conmutativos o complejos
+   simpliciales en pocos pasos.
+
+** Diagramas conmutativos
+   Ahora estoy escribiendo sobre álgebra homológica y teoría de categorías, así que
+   la mayoría de lo que escribo usa secuencias exactas y diagramas conmutativos.
+
+   Para las secuencias exactas, por ejemplo, tengo simplemente
+   una plantilla con =yasnippet=, que me deja 
+   incluirlas escribiendo =complex_= y pulsando =<tab>=:
+
+   #+BEGIN_SRC text
+     # -*- mode: snippet -*-
+     # name: complex
+     # key: complex_
+     #--
+     \[ $1 \overset{$6}\longrightarrow 
+     $2 \overset{$7}\longrightarrow 
+     $3 \overset{$8}\longrightarrow 
+     $4 \overset{$9}\longrightarrow 
+     $5 \]
+   #+END_SRC
+
+   Para los diagramas conmutativos, la solución es un poco más compleja. El
+   paquete *tikz* de Latex es muy útil para escribirlos pero es demasiado recargado
+   en sintaxis,
+   así que existe *tikz-cd*, que simplifica su sintaxis para centrarla en diagramas
+   conmutativos. Para usarlo, hay que empezar por incluir en el archivo
+   de configuración =init.el= las siguientes líneas: 
+
+   #+BEGIN_SRC lisp
+     (add-to-list
+      'org-latex-packages-alist '("" "tikz" t))
+     (eval-after-load "preview"
+       '(add-to-list
+         'preview-default-preamble
+         "\\PreviewEnvironment{tikzpicture}"
+         t))
+   #+END_SRC
+
+   Y además, en mi caso, tuve que cambiar el programa con el que generaba las
+   imágenes. Por lo menos a mí, me parece funcionar sólo *imagemagick*:
+
+   #+BEGIN_SRC lisp
+     (setq org-latex-create-formula-image-program 'imagemagick)
+   #+END_SRC
+
+** Cabeceras en Latex
+   Cuando necesitamos funcionalidad adicional que ofrece Latex en bibliotecas aparte,
+   como usar =tikz-cd=, podemos incluirlas en la cabecera del archivo org como:
+   
+   #+BEGIN_SRC 
+     #+latex_header: \usepackage{amsthm}
+     #+latex_header: \usepackage{amsmath}
+     #+latex_header: \usepackage{tikz-cd}
+   #+END_SRC
+
+** Ensanchar secciones
+   Para evitar tener que repetir varias veces la misma cabecera en varios archivos, podemos
+   usar un sólo archivo para escribir matemáticas y fraccionarlo en secciones temáticas.
+   Cuando necesitamos tratar una sección, podemos usar la funcionalidad de [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html][org]] para tratar
+   sólo una sección.
+   
+* Mónadas
+:PROPERTIES:
+:TITLE:    Mónadas
+:HUGO_TAGS: haskell
+:HUGO_TOPICS: haskell
+:HUGO_FILE: post/monadas.md
+:HUGO_DATE: [2016-12-24 Mon 15:09]
+:END:
+
+#+BEGIN_QUOTE
+  A monad is just a monoid in the category of endofunctors, what's the
+  problem?
+
+  -- *Philip Walder* (apócrifa) en /[[http://james-iry.blogspot.com.es/2009/05/brief-incomplete-and-mostly-wrong.html][A Brief, Incomplete, and Mostly Wrong History of programming languages]]/
+#+END_QUOTE
+
+** Prerrequisitos
+Este artículo requiere un conocimiento previo de Haskell, o al menos, de
+otro lenguaje de programación funcional. Puedes consultar nuestra
+[[http://tux.ugr.es/dgiim/blog/2014/10/01/intro-haskell/][introducción a Haskell]] con recursos para iniciarte en el lenguaje.
+
+Por otro lado, para la segunda parte del artículo es recomendable
+conocimiento previo sobre teoría de categorías. Aun así, no es necesaria
+para leer la primera parte del artículo, donde hablamos de mónadas sin
+hacer ninguna referencia explícita a la teoría de categorías. Si quieres
+leer sobre ese tema, puedes consultar nuestros apuntes de
+[[http://tux.ugr.es/dgiim/blog/2014/10/04/intro-categorias/][introducción a teoría de categorías]].
+
+** Motivación para las mónadas
+*** Mónadas en Haskell
+    :PROPERTIES:
+    :CUSTOM_ID: mónadas-en-haskell
+    :END:
+
+Imaginemos que necesitamos controlar cuando una función interna devuelve
+un error, o cuando usa un estado que debe ser pasado al resto de
+funciones. Cuando trabajamos con programación funcional pura, debemos
+devolver explícitamente el error (señalar cómo va a tratarlo cada
+función) o pasar el estado como argumento a cada una de las funciones;
+así que una solución sería modificar cada una de las funciones que
+usamos para que tenga en cuenta ese estado o ese caso de error, pero
+esto añadiría mucha complejidad innecesaria a nuestro código. La
+estructura de mónada simplifica esta escritura.
+
+El siguiente ejemplo, en el que tratamos el manejo de errores
+encapsulado en una mónada, está inspirado en los ejemplos de:
+
+-  [[http://homepages.inf.ed.ac.uk/wadler/papers/marktoberdorf/baastad.pdf][Monads for functional programming]] - /Philip Wadler/
+
+Que es una muy buena introducción al uso de las mónadas en programación
+funcional.
+
+*** Calculando raíces cuadradas
+Por ejemplo, supongamos que intentamos sacar raíces cuadradas en los
+reales usando el [[https://en.wikipedia.org/wiki/Integer_square_root#Algorithm][método de Newton]]. Si intentamos calcular $\sqrt{n}$, 
+podemos tomar a cada paso la aproximación:
+
+\[ x_{k+1} = \frac{1}{2}\left( x_k+\frac{n}{x_k} \right) \]
+
+Y parar cuando estemos suficientemente cerca (más cerca que un ε dado):
+
+\[ |x_{k+1} - x_k| < \varepsilon \]
+
+Escribimos una implementación de ese concepto de convergencia para
+listas infinitas en Haskell y del método de Newton, basado en la función
+[[http://hackage.haskell.org/package/base-4.9.0.0/docs/Prelude.html#v:iterate][=iterate=]]:
+
+#+BEGIN_SRC haskell
+    limit :: Float -> [Float] -> Float
+    limit epsilon (x:y:xs)
+      | abs (x-y) < epsilon = y
+      | otherwise           = limit epsilon (y:xs)
+
+    newtonaprox :: Float -> Float -> Float
+    newtonaprox n x = (x + n/x)/2
+
+    sqroot :: Float -> Float
+    sqroot 0 = 0
+    sqroot x = limit 0.03 (iterate (newtonaprox x) x)
+#+END_SRC
+
+Ahora imaginemos que usamos esta raíz cuadrada recién definida para
+solucionar una ecuación de segundo grado $x^2 + bx + c = 0$:
+
+\[ x = \frac{-b \pm \sqrt{b^2 - 4c}}{2} \]
+
+Podemos definir una estructura de datos =QPol= para el polinomio y una
+función que lo resuelva obteniendo sus dos raíces:
+
+#+BEGIN_SRC haskell
+  data QPol = QPol Float Float Float
+
+  instance Show QPol where
+      show (Qpol a b c) = show a ++ "x² + " ++ show b ++ "x + " show c
+
+  solve :: QPol -> (Float,Float)
+  solve (QPol a b c) = (sol1 sol2)
+      where sol1 = ((-b) + sqroot(b*b-4*c*a))/(2*a)
+            sol2 = ((-b) - sqroot(b*b-4*c*a))/(2*a)
+#+END_SRC
+
+Y podemos comprobar que funciona:
+
+#+BEGIN_EXAMPLE
+    λ> pol = QPol 1 (-5) 6
+    λ> putStrLn $ "Las soluciones de " ++ show pol ++ " son " ++ solve pol
+    Las soluciones de 1.0x² + -5.0x + 6.0 son (3.0,2.0)
+#+END_EXAMPLE
+
+*** Controlando los errores
+Pero ¿qué ocurre cuando intentamos calcular la raíz cuadrada de un
+número no positivo? Este método no la encuentra, por lo que debería
+devolver un error antes de intentar empezar a calcularla. La solución
+obvia es reflejar este error con un =Maybe= en el cálculo de la raíz
+cuadrada.
+
+#+BEGIN_SRC haskell
+    sqroot' :: Float -> Maybe Float
+    sqroot' x
+      | x < 0     = Nothing
+      | x == 0    = Just 0.0
+      | otherwise = Just ( limit 0.03 (iterate (newtonsqrt x) x) )
+#+END_SRC
+
+Esto lo soluciona, pero nos crea un problema mayor. La función =solve=
+está usando la raíz cuadrada y se espera de ella que devuelva un número,
+no un posible error. Si queremos conseguir que funcione con la nueva
+=sqroot'=, necesitaríamos implementar todas sus componentes internas
+teniendo en cuenta ese error. Por ejemplo, deberíamos reescribir el
+=(+)=, para tener en cuenta errores y propagarlos por todos los cálculos
+involucrando a =sqroot'=:
+
+#+BEGIN_SRC haskell
+    (+.) :: Maybe Float -> Maybe Float -> Maybe Float
+    (+.) Nothing _ = Nothing
+    (+.) _ Nothing = Nothing
+    (+.) (Just a) (Just b) = Just (a + b)
+#+END_SRC
+
+Pero esto es muy pesado de implementar; deberíamos implementarlo ¡para
+cada una de las operaciones que usen la raíz cuadrada en algún punto!
+Esto obliga a cada una de nuestras operaciones intermedias a ser
+conscientes de la posibilidad de error, dándonos código mucho menos
+modular y reusable.
+
+Una solución ligeramente mejor es la de abstraer este proceso de hacer a
+una función consciente de la posibilidad de error en una función aparte
+y definir las demás en función suya:
+
+#+BEGIN_SRC haskell
+    errorAware :: (a -> b -> c) -> Maybe a -> Maybe b -> Maybe c
+    errorAware op Nothing _ = Nothing
+    errorAware op _ Nothing = Nothing
+    errorAware op (Just a) (Just b) = Just (op a b)
+
+    (+.), (*.) :: Maybe Float -> Maybe Float -> Maybe Float
+    (+.) = errorAware (+)
+    (*.) = errorAware (*)
+#+END_SRC
+
+Esto nos permite hacer cálculos con ellas:
+
+#+BEGIN_EXAMPLE
+    λ> sqroot' (-3) +. Just 4
+    Nothing
+    λ> sqroot' 3 +. Just 4
+    Just 5.732143
+#+END_EXAMPLE
+
+*** La mónada Maybe
+Esta idea para simplificar el tratamiento de errores, realizada
+correctamente, es lo que nos va a proporcionar la estructura de mónada.
+En Haskell, podemos definir una mónada como:
+
+#+BEGIN_SRC haskell
+    class Monad m where
+      (>>=)  :: m a -> (a -> m b) -> m b
+      return :: a -> m a
+#+END_SRC
+
+La idea intuitiva es que =(>>=)= nos permite tomar una función que puede
+devolver errores pero que no comprueba a la entrada si ha recibido un
+error, es decir, de tipo =(a -> Maybe b)= ; y aplicarla sobre una
+función que puede contener un error. La podríamos usar por ejemplo para
+componer varias =sqroot'=, que era algo que hasta ahora no podíamos
+hacer sin tratar cada posible caso de error. Y la función =return=, que
+en este caso es simplemente =Just=, nos permite considerar una constante
+como un posible error. Podemos calcular fácilmente así
+$$\sqrt{\sqrt{3}}$$ teniendo en cuenta los casos de error:
+
+#+BEGIN_SRC haskell
+    sqroot' (sqroot' 3)              -- ¡Error de tipos!
+    sqroot' 3 >>= sqroot'            -- Usando mónadas
+    Just   3 >>= sqroot' >>= sqroot' -- Usando Just
+    return 3 >>= sqroot' >>= sqroot' -- Equivalente a lo anterior
+#+END_SRC
+
+*** Notación do
+Las mónadas definen las funciones anteriores y muchas más que no vamos a
+tratar ahora mismo, pero como resultado, nos acaban ofreciendo la
+*[[https://en.wikibooks.org/wiki/Haskell/do_notation][notación do]]*,
+que es la que podemos usar para acabar escribiendo nuestra función
+=solve= como:
+
+#+BEGIN_SRC haskell
+    solve :: QPol -> Maybe (Float,Float)
+    solve (QPol a b c) = do
+      discriminant <- sqroot' (b*b - 4*c*a)
+      return (((-b) + discriminant)/(2*a), ((-b) - discriminant)/(2*a))
+#+END_SRC
+
+En la primera línea tenemos en cuenta que la función =sqroot= puede
+producir error, y en la segunda simplemente usamos el /posible/
+resultado de ella sin tener que preocuparnos por el resto de funciones.
+
+Nótese que la notación *do* es sólo una notación diseñada para aliviar
+la escritura de operaciones con mónadas en algunos casos particulares;
+es sólo /azúcar sintáctico/ para operaciones que no dejan de ser
+puramente funcionales. Existen críticas al uso de esta notación. [1]
+
+** Mónadas en programación funcional
+*** Mónadas como clase de tipos
+Las mónadas en Haskell están definidas como una clase de tipos teniendo:
+
+-  Un *constructor* de tipos ~m ∷ * -> *~, que para cada tipo =a=,
+   devuelve una mónada conteniéndolo, =m a=.
+-  Una *función* ~return ∷ a -> m a~, que para todo elemento de tipo
+   =a=, devuelve una mónada que lo contiene.
+-  Una *función* ~(>>=) ∷ m a -> (a -> m b) -> m b~, que dada una
+   mónada y una función que se aplique sobre su interior y devuelva otra
+   mónada, devuelve la mónada resultante. Sirve como composición de
+   funciones monádicas.
+
+La existencia de la última función equivale a la existencia de otras dos
+funciones =fmap ∷ (a -> b) -> m a -> m b= y =join ∷ m (m a) -> m a=.
+
+Nótese entonces que para ser mónada, una clase de tipos debe ser primero
+un funtor. Dentro de los funtores que conocemos, podemos reconocer
+algunas mónadas, incluyendo la mónada =Maybe= que hemos usado hasta
+ahora:
+
+#+BEGIN_SRC haskell
+  -- Return de la mónada Maybe
+  return x = Just x
+
+  -- Bind de la mónada Maybe
+  (Just x) >>= k = k x
+  Nothing  >>= _ = Nothing
+
+  -- Return de la mónada List
+  return x = [x]
+
+  -- Bind de la mónada List
+  xs >>= f = [y | x <- xs, y <- f x]
+#+END_SRC
+
+Puedes empezar a leer tutoriales sobre el uso de las mónadas en Haskell
+en:
+
+ - [[http://learnyouahaskell.com/a-fistful-of-monads][A fistful of monads - Learn you a Haskell]]
+ - [[https://en.wikibooks.org/wiki/Haskell/Understanding_monads][Understanding monads - Wikibooks]]
+
+*** Mónada lista
+En las listas, por ejemplo, tenemos como candidato para
+=join :: [[a]] -> [a]= la concatenación de listas, =concat=. Nuestro
+=return :: a -> [a]= será simplemente incluir un elemento en una lista
+que sólo lo contenga a él.
+
+En esta mónada, =(>>=)= mapea una función =a -> [a]= sobre cada elemento
+de la lista y concatena todos los resultados:
+
+#+BEGIN_EXAMPLE
+    λ> [1,2,3] >>= (replicate 3)
+    [1,1,1,2,2,2,3,3,3]
+#+END_EXAMPLE
+
+Nótese que, de la misma manera en la que podemos usar =(>>=)=, podemos
+usar una versión con sus parámetros cambiados de orden, =(=<<)=. Aquí
+usamos la mónada lista para enumerar los racionales repitiendo
+elementos:[2]
+
+#+BEGIN_SRC haskell
+    import Data.List
+    import Data.Ratio
+
+    -- Crea los racionales con denominador n
+    withDenom :: Integral -> [Rational]
+    withDenom n = map (%n) [1..]
+
+    -- Para cada entero, crea los racionales que lo
+    -- tienen como denominador
+    rationalsDup :: [Rational]
+    rationalsDup = withDenom =<< [1..]
+
+    -- Evita duplicados con 'nub'
+    rationals :: [Rational]
+    rationals = nub rationalsDup
+#+END_SRC
+
+*** Mónada IO
+La mónada IO surge como una solución al problema de implementar efectos
+secundarios (como la lectura o escritura) en un lenguaje puro y de forma
+extensible, sin tener que alterar el sistema de tipos y respetando el
+orden en el que queremos que se ejecuten.
+
+#+BEGIN_SRC haskell
+    greeting :: IO ()
+    greeting = fmap ("Hola, "++) getLine >>= print
+#+END_SRC
+
+Pueden leerse más detalles sobre mónada IO y su implementación en:
+
+-  [[http://chris-taylor.github.io/blog/2013/02/09/io-is-not-a-side-effect/][IO is pure]] - Chris Taylor
+-  [[https://www.microsoft.com/en-us/research/wp-content/uploads/1993/01/imperative.pdf][Imperative functional programming]] - Simon L. Peyton Jones, Philip Wadler
+-  [[https://blog.jle.im/entry/first-class-statements][First-Class “Statements”]] - Justin Le
+
+*** Mónada estado
+En ocasiones necesitamos que nuestras funciones conserven un estado
+además de realizar sus operaciones. Para esos casos existe la mónada
+estado =State s=, que guarda un valor de estado de tipo =s=. Podemos
+pensar en =State s a= como =s -> (a,s)=; es decir, un elemento dentro de
+la mónada es una función dispuesta a tomar un estado inicial y a
+devolver algún elemento junto a un estado final.
+
+Existen tutoriales sobre la mónada estado en:
+
+-  [[https://wiki.haskell.org/State_Monad][State Monad - Haskell wiki]]
+-  [[http://learnyouahaskell.com/for-a-few-monads-more][For a few monads more - Learn you a Haskell]]
+-  [[http://brandon.si/code/the-state-monad-a-tutorial-for-the-confused/][The State Monad: a tutorial for the confused - Brandon Simmons]]
+-  [[http://adit.io/posts/2013-06-10-three-useful-monads.html][Three useful monads - Aditya Bhargava]]
+
+Un uso de la mónada estado puede ser el guardar la semilla de una
+generación pseudoaleatoria de números usando
+[[https://en.wikipedia.org/wiki/Linear_congruential_generator][generadores lineales congruenciales]]. En concreto, usaremos la fórmula iterativa
+$x_{i+1} \equiv 16807x_i \text{ mod } 2147483647$, que se expone [[https://math.dartmouth.edu/archive/m20f11/public_html/RANDOMNESS_LCG.pdf][aquí]].
+Con este generador podremos escribir dados de un número dado de caras y
+llamarlos varias veces. El estado interno pasará la semilla aleatoria de
+un dado al siguiente:
+
+#+BEGIN_SRC haskell
+    import Control.Monad.State
+    type Seed = Int
+
+    dice :: Int -> State Seed Int
+    dice n = state (\s -> (s `mod` n + 1, 16807*s `mod` 2147483647))
+#+END_SRC
+
+Y podríamos llamarlo con la semilla =1000= de la forma siguiente; que
+nos devolverá por un lado el resultado de la tirada y por otro lado la
+nueva semilla:
+
+#+BEGIN_EXAMPLE
+    λ> runState (dice 6) 1000
+    (5,1660)
+#+END_EXAMPLE
+
+Si queremos hacer varias tiradas seguidas, podemos usar
+=replicateM :: Int -> m a -> m [a]=, que se encarga de pasar
+internamente la semilla de cada tirada a la siguiente tirada:
+
+#+BEGIN_EXAMPLE
+    λ> fst (runState (replicateM 100 (dice 6)) 1037)
+
+    [6,6,2,5,4,3,6,1,4,6,3,6,4,4,6,3,5,1,5,2,6,4,2,6,4,2,4,
+    5,1,6,5,4,1,3,5,4,6,4,2,3,4,2,1,1,6,5,5,4,1,1,4,6,5,3,6,
+    3,1,1,5,1,4,1,2,3,5,5,4,5,3,3,2,6,4,1,1,1,2,5,4,5,2,4,5,
+    6,1,2,4,3,3,6,4,6,3,4,5,1,4,2,2,2]
+#+END_EXAMPLE
+
+Incluso podemos crear nuevos generadores aleatorios a partir de los
+anteriores con las operaciones usuales:
+
+#+BEGIN_SRC haskell
+    twodices :: State Seed Int
+    twodices = do
+        a <- dice 6
+        b <- dice 6
+        return (a+b)
+#+END_SRC
+
+Cuando lo llamemos, tomará la distribución suma de las dos
+distribuciones de dados:
+
+#+BEGIN_EXAMPLE
+    λ> fst (runState (replicateM 100 twodices) 1032)
+
+    [8,11,8,8,5,3,7,8,9,5,2,6,7,9,8,7,5,9,3,9,10,7,7,10,
+    8,2,5,6,4,10,8,6,4,6,4,8,9,7,12,11,9,3,2,7,5,5,6,10,
+    6,6,3,11,4,7,3,6,3,7,10,4,4,11,4,10,3,5,2,8,4,10,12,
+    8,9,5,9,11,6,4,10,6,6,12,5,2,7,8,7,4,4,4,9,6,6,6,3,
+    11,11,9,7,6]
+#+END_EXAMPLE
+
+** Mónadas en teoría de categorías
+Para entender cómo funcionan las [[https://es.wikipedia.org/wiki/M%C3%B3nada_(teor%C3%ADa_de_categor%C3%ADas)][mónadas]]
+en teoría de categorías tenemos que entender dos conceptos: los
+/productos en una [[https://es.wikipedia.org/wiki/Categor%C3%ADa_monoidal][categoría monoidal]]/ y /los endofuntores de una categoría/. 
+La unión de ambos conceptos es lo que nos dará las mónadas como una 
+construcción en teoría de categorías.
+
+*** Categorías monoidales
+Simplificando, una categoría monoidal es aquella donde, dados dos
+objetos $A,B$, tenemos un objeto /"producto tensor"/ de ambos,
+$A \otimes B$, donde además existe un objeto identidad $I$
+cumpliendo propiedades como:
+
+\[A \otimes B \cong B \otimes A\]
+
+\[A \otimes (B \otimes C) \cong (A \otimes B) \otimes C\]
+
+\[A \otimes I \cong A\]
+
+*** Ejemplos de categorías monoidales
+Los *conjuntos* con el producto cartesiano y el conjunto de un elemento
+forman ya una categoría monoidal. Puede comprobarse sobre ellos que
+existen los isomorfismos:
+
+\[A \times B \cong B \times A\]
+
+\[A \times (B \times C) \cong (A \times B) \times C\]
+
+\[A \times \{\bullet\} \cong A\]
+
+Pero además, podemos darles /otra/ estructura de categoría monoidal,
+esta vez con la [[https://es.wikipedia.org/wiki/Uni%C3%B3n_disjunta][unión disjunta]] y el conjunto vacío:
+
+\[A \sqcup B \cong B \sqcup A\]
+
+\[A \sqcup (B \sqcup C) \cong (A \sqcup B) \sqcup C\]
+
+\[A \sqcup \varnothing \cong A\]
+
+En general, *todas las categorías con productos finitos son categorías
+monoidales* con el producto categórico y el objeto terminal como unidad.
+Todas las categorías con coproductos finitos son categorías monoidales
+con el coproducto categórico y el objeto inicial como unidad.
+
+Otro ejemplo distinto lo forman los *espacios vectoriales* sobre un
+cuerpo $K$ con el producto tensor y el propio cuerpo sirviendo como
+unidad; o los *grupos abelianos* con el producto tensor y $\mathbb{Z}$
+siendo la unidad.
+
+*** Objetos monoide
+Un objeto $$A$$ de una categoría monoidal es objeto monoide cuando puedo
+definir un morfismo desde el objeto identidad hacia él y un morfismo
+desde el producto tensor $$A \otimes A$$ hacia él. Es decir, hay un
+morfismo /cero/:
+
+\[ I \overset{0}\longrightarrow A \]
+
+Y un morfismo /multiplicación/:
+
+\[ A \otimes A \overset{\mu}\longrightarrow A \]
+
+Cumpliendo ciertas propiedades similares a las que exigimos a un
+monoide. De hecho, un objeto monoide en la categoría de los conjuntos
+con el producto cartesiano es simplemente un *monoide* normal y
+corriente.
+
+*** Categorías de endofuntores
+El ejemplo que nos interesa ahora, sin embargo, es el de los
+*endofuntores* de una categoría. Un *funtor*, de forma simplificada, es
+una /aplicación entre categorías/; que lleva objetos en objetos y
+morfismos en morfismos, respetando además el punto de inicio y fin de
+cada morfismo.
+
+Si consideramos los funtores de una categoría a sí misma, tenemos los
+*endofuntores* de la categoría. Y entre ellos existen transformaciones
+naturales que actúan como morfismos en el sentido de que se componen
+para dar otras transformaciones naturales. Teniendo unos objetos (los
+endofuntores), y unos morfismos (las transformaciones naturales),
+tenemos una categoría. Nótese que hemos abstraído mucho, estamos
+trabajando con una categoría en la que cada objeto es en sí mismo un
+endofuntor y cada morfismo es toda una transformación natural entre dos
+funtores.
+
+Esta es además una categoría monoidal. El producto tensor de esta
+categoría monoidal será la composición $\circ$, y el objeto identidad
+el endofuntor identidad, que actúa dejando fijo cada objeto y cada
+morfismo.
+
+*** Mónadas
+Pues bien, una mónada es un objeto monoide en la categoría de los
+endofuntores con la composición como producto tensor. Esto quiere decir
+que es un endofuntor $$F$$ con transformaciones naturales:
+
+\[F \circ F \Rightarrow F\]
+
+\[I \Rightarrow F\]
+
+Como una transformación natural nos da un morfismo por cada objeto en el
+que se aplica el funtor, lo que tenemos son familias de morfismos:
+
+\[F(F(X)) \overset{\mu_x}\longrightarrow F(X)\]
+
+\[X \overset{r_x}\longrightarrow F(X)\]
+
+*** Una categoría para la programación funcional
+Algunos sistemas de tipos, con las funciones entre ellos =A -> B= como
+morfismos, forman una categoría[3]. No es el caso de Haskell, en el que,
+por varios motivos, sus tipos no forman una categoría[4]; pero las
+construcciones con inspiración en la teoría de categorías toman el
+nombre de sus homólogas.[5]
+
+El primer ejemplo de esto son los *funtores*. En Haskell, un funtor se
+define como:
+
+#+BEGIN_SRC haskell
+  class Functor f where 
+    fmap :: (a -> b) -> f a -> f b 
+#+END_SRC
+
+Es decir un funtor toma un tipo =a= (un objeto de la categoría), y nos
+devuelve otro tipo =f a= (otro objeto de la /misma/ categoría). Por otro
+lado, el funtor toma un morfismo =a -> b= y nos devuelve otro morfismo
+=f a -> f b=. Es decir, los funtores de la programación funcional son
+*endofuntores en la categoría de los tipos*, siempre que conserven
+ciertas reglas que tienen su reflejo en las reglas de funtores en
+Haskell.
+
+*** Monoides en la categoría de los endofuntores
+Entonces, si los funtores =f :: * -> *= son endofuntores en alguna
+categoría, tiene sentido cuestionarse cuáles de ellos son monoides.
+Esto, junto con ciertas restricciones que se le imponen como leyes a las
+mónadas, equivale a decir que existen los morfismos dados por las
+transformaciones naturales que pedíamos antes, es decir, deben existir
+morfismos de tipos =a -> m a= y =m (m a) -> m a=:
+
+#+BEGIN_SRC haskell
+    return :: a -> m a
+    join :: m (m a) -> m a
+#+END_SRC
+
+Así, a cualquier funtor que tiene estos dos morfismos, además del =fmap=
+que tenía por ser funtor, lo llamamos *mónada*. Nótese que =>>== puede
+implementarse desde =join= y viceversa, como:
+
+#+BEGIN_SRC haskell
+    (>>=) :: m a -> (a -> m b) -> m b
+    (>>=) x f = join (fmap f a)
+
+    join :: m (m a) -> m a
+    join x = x >>= id
+#+END_SRC
+
+Tenemos entonces dos definiciones equivalentes de lo que es una mónada.
+Una desde la teoría de categorías y otra desde la teoría de tipos y los
+lenguajes de programación funcional. Una visión desde las mónadas como
+monoides en la categoría de los endofuntores desde dentro de Haskell
+puede verse [[http://blog.sigfpe.com/2008/11/from-monoids-to-monads.html][aquí]].
+
+** Y más
+Además de las enunciadas en este post, existen más otros temas
+relevantes en relación a las mónadas, tanto en programación funcional
+como en teoría de categorías:
+
+-  [[http://book.realworldhaskell.org/read/monad-transformers.html][Transformadores de mónadas]], usadas para componer mónadas.
+-  [[http://stackoverflow.com/questions/8428554/what-is-the-comonad-typeclass-in-haskell][Comónadas]], la noción dual de una mónada.
+-  [[https://en.wikipedia.org/wiki/Kleisli_category][Categorías de Kleisli]], cada mónada da lugar a una categoría de Kleisli.
+-  [[https://en.wikipedia.org/wiki/Adjoint_functors][Funtores adjuntos]], cada par de funtores adjuntos da lugar a una mónada.
+-  [[http://www.cs.tufts.edu/comp/150FP/archive/brent-yorgey/tc.pdf][Typeclassopedia]], una revisión de otras clases de tipos relevantes en Haskell y
+   relacionadas con la teoría de categorías.
+
+** Referencias
+[1] Peligros de la notación do.
+    [[https://wiki.haskell.org/Do_notation_considered_harmful][Do notation considered harmful]]
+
+[2] Enumerando los racionales.
+    [[http://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/rationals.pdf][Enumerating the rationals - J. Gibbons, D. Lester, R. Bird]]
+
+[3] La correspondencia entre tipos, lógica y categorías.
+    [[https://ncatlab.org/nlab/show/computational+trinitarianism][Computational Trinitarianism - NLab]]
+
+[4] Por qué los tipos de Haskell no son una categoría.
+    [[http://math.andrej.com/2016/08/06/hask-is-not-a-category/][Hask is not a category - Andrej Bauer]]
+
+[5] Por qué en ocasiones puede ser útil pensar en ellos como una
+    categoría.
+    [[https://ro-che.info/articles/2016-08-07-hask-category][Does it matter if Hask is (not) a category?]]
+
+* Projective, injective and flat modules
+:PROPERTIES:
+:TITLE:    Projective, injective and flat modules
+:HUGO_TAGS: math
+:HUGO_TOPICS: math
+:HUGO_FILE: post/projectivemodules.md
+:HUGO_DATE: [2017-02-18 Sat 15:10]
+:END:
+
+** Definitions
+An R-module $D$ is:
+
+ 1. *Projective* if $Hom(D, -)$ is an exact functor.
+ 2. *Injective* if $Hom(-,D)$ is an exact functor.
+ 3. *Flat* if $D \otimes -$ is an exact functor.
+
+** Characterization
+We know that $Hom(D,-)$ and $Hom(-,D)$ are left-exact and that
+$D\otimes -$ is right-exact; so for them to be exact, we only need:
+
+- A module $D$ is *projective* when every $f : B \longrightarrow C$ surjective induces
+  $(f\circ\_) :Hom(D,B) \longrightarrow Hom(D,C)$ surjective.
+  #+attr_html: :width 300px
+  https://raw.githubusercontent.com/M42/m42.github.io/images/projective.jpeg
+
+- A module $D$ is *injective* when $f : A \longrightarrow B$ surjective induces
+  $(\_\circ f) : Hom(B,D) \longrightarrow Hom(A,D)$ surjective.
+  #+attr_html: :width 300px
+  https://raw.githubusercontent.com/M42/m42.github.io/images/injective.jpeg
+   
+- A module $D$ is *flat* when $f : A \longrightarrow B$ injective induces 
+  $f' : D\otimes A \longrightarrow D \otimes B$ injective.
+
+* Ideas de teoría de tipos
+:PROPERTIES:
+:TITLE:    Ideas de teoría de tipos
+:HUGO_TAGS: logic
+:HUGO_TOPICS: logic
+:HUGO_FILE: post/teoriatipos.md
+:HUGO_DATE: [2016-01-08 Fri 15:13]
+:END:
+
+Los sistemas de tipos tienen su utilidad en las matemáticas. Sirven para
+modelar una fundamentación de las matemáticas distinta de la usual
+fundamentación conjuntista; y tienen varias aplicaciones interesantes en
+lenguajes funcionales y asistentes de demostración. En particular, sobre
+los tipos se puede definir un álgebra y se pueden representar sistemas
+lógicos. Vamos a tratar esas aplicaciones referenciando en cada caso
+artículos donde se exponen en profundidad.
+
+** Inducción estructural
+La inducción estructural es una generalización de la inducción usual
+sobre los naturales que la extiende a otras estructuras representables
+como tipos de un lenguaje funcional. Sobre la inducción estructural
+hemos escrito previamente en el blog una introducción:
+
+-  [[http://tux.ugr.es/dgiim/blog/2015/03/14/induccion-estructural/][Inducción Estructural - Blog LibreIM]]
+
+En ese post se escriben ejemplos sobre los naturales y los árboles. El
+artículo sobre el que se basa es:
+
+-  [[http://math.blogoverflow.com/2015/03/10/when-can-we-do-induction/][When can we do induction? - math.blogoverflow]]
+
+Ejemplos y más detalles sobre inducción estructural y sus usos pueden
+encontrarse en:
+
+-  [[http://www.cs.cmu.edu/~me/212/handouts/structural.pdf][Some notes on Structural Induction - Michael Erdmann]]
+-  [[http://arxiv.org/pdf/1312.2696.pdf][Structural Induction Principles for Functional Programmers - James Caldwell]]
+
+Y varias demostraciones por inducción estructural implementadas en Coq
+en este repositorio sobre [[https://github.com/M42/recorridosArboles][*recorridos en árboles*]].
+
+** Álgebra de tipos
+En un post anterior del blog de *LibreIM* hemos tratado el álgebra de
+tipos. Ese post se basó sobre otros tres publicados en el blog de Chris
+Taylor:
+
+-  [[http://tux.ugr.es/dgiim/blog/2015/03/24/algebra-tipos/][Álgebra de tipos - Blog LibreIM]]
+-  [[http://chris-taylor.github.io/blog/2013/02/10/the-algebra-of-algebraic-data-types/][The algebra of algebraic data types, Part I - Chris Taylor]]
+-  [[http://chris-taylor.github.io/blog/2013/02/11/the-algebra-of-algebraic-data-types-part-ii/][The algebra of algebraic data types, Part II - Chris Taylor]]
+-  [[http://chris-taylor.github.io/blog/2013/02/13/the-algebra-of-algebraic-data-types-part-iii/][The algebra of algebraic data types, Part III - Chris Taylor]]
+
+En el segundo de los artículos se usan funciones generadoras para probar
+resultados sobre los números de Catalan y los árboles binarios. La
+teoría de funciones generadoras necesaria para entender el tratamiento
+de los árboles binarios la explica Mike Spivey en
+/[[https://mikespivey.wordpress.com/2013/03/19/the-catalan-numbers-from-their-generating-function/][The catalan numbers from their generating function]]/.
+
+Además, existe un resultado de *Fiore y Leinster* que afirma que si
+demostramos una relacion polinómica para números complejos, también será
+válida para cualquier
+[[https://en.wikipedia.org/wiki/Semiring][semianillo]]. Y por tanto,
+para los tipos. Esto quiere decir que, en la mayoría de las ocasiones,
+podemos usar la resta o la división de tipos como si existieran. La
+demostración excluye algunos casos particulares y se expone aquí:
+
+-  [[http://arxiv.org/pdf/math/0212377v1.pdf][Objects of categories as
+   complex numbers - Marcelo Fiore y Tom Leinster]]
+
+Sobre el uso de las derivadas en el álgebra de tipos existe un resultado
+de *Conor McBride* que relaciona las derivadas parciales con los
+[[http://learnyouahaskell.com/zippers][/zippers/]] de Haskell usados
+para representar contextos. Puede leerse aquí:
+
+-  [[http://strictlypositive.org/diff.pdf][The derivative of a regular
+   type is its type of one-hole contexts - Conor McBride]].
+
+** Lógica con tipos
+La aplicación de los tipos a la lógica y las demostraciones parte del
+isomorfismo de Curry-Howard, que relaciona los sistemas de tipos con
+sistemas lógicos. El sistema más simple donde puede apreciarse el
+isomorfismo es el
+[[https://en.wikipedia.org/wiki/Typed_lambda_calculus][*cálculo lambda tipado*]], que es isomorfo a la
+[[https://en.wikipedia.org/wiki/Natural_deduction][*deducción natural*]]. La deducción natural es un ejemplo de lógica intuicionista,
+lo que en la práctica quiere decir que /no/ (!) se tienen el /tercio
+excluso/ y la /doble negación/ como axiomas:
+
+$$ A \wedge \neg A$$
+
+$$ \neg \neg A \implies A $$
+
+Los apuntes sobre [[https://github.com/libreim/curryHoward/blob/master/CurryHoward.pdf][*Curry-Howard*]]
+de los repositorios del doble grado explican el isomorfismo sobre la
+deducción natural y el cálculo lambda tipado. El
+[[https://github.com/libreim/curryHoward/tree/master/src][código fuente]] acompañando los apuntes está escrito en Coq y Haskell.
+
+La idea de tratar las proposiciones como tipos la expone *Philip Wadler*
+en los dos siguientes artículos: primero de manera didáctica, con una
+introducción histórica y sobre el sistema de la deducción natural, y
+luego de forma más compleja, exponiendo el isomorfismo sobre el sistema
+de tipos de Haskell.
+
+-  [[http://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf][Propositions
+   as Types - Philip Wadler]]
+-  [[http://homepages.inf.ed.ac.uk/wadler/papers/gr2/gr2.pdf][The
+   Girard-Reynolds Isomorphism - Philip Wadler]]
+
+** Parametricidad
+La parametricidad limita las instancias posibles de los tipos de la
+forma =forall a. p(a)=, y nos permite obtener teoremas sobre todas las
+instancias de esos tipos. Se explica a nivel intuitivo en el siguiente
+post de Bartosz Milewski y más formalmente en este paper de Philip
+Wadler:
+
+-  [[http://bartoszmilewski.com/2014/09/22/parametricity-money-for-nothing-and-theorems-for-free/][Parametricity:
+   Money for Nothing and Theorems for Free - Bartosz Milewski]]
+-  [[http://ttic.uchicago.edu/~dreyer/course/papers/wadler.pdf][Theorems
+   for free! - Philip Wadler]]
+
+** Teoría de tipos
+Los tipos pueden usarse para fundamentar las matemáticas, del mismo modo
+que lo hacen los conjuntos (en sistemas axiomáticos como
+[[https://en.wikipedia.org/wiki/Zermelo%E2%80%93Fraenkel_set_theory][ZFC]])
+o las categorías (en sistemas como
+[[https://ncatlab.org/nlab/show/ETCS][ETCS]]). En el siguiente artículo
+se discuten las diferencias de ambos con la *teoría de tipos
+dependientes de Martin-Löf*, que se expone por completo en las notas de
+Nordström, Petersson y Smith:
+
+-  [[https://golem.ph.utexas.edu/category/2013/01/from_set_theory_to_type_theory.html][From
+   Set Theory to Type Theory - The n-Category Café]]
+-  [[http://www.cse.chalmers.se/~bengt/papers/hlcs.pdf][Martin-Löf Type
+   Theory - B. Nordström, K. Petersson, J.M. Smith]]
+
+Esto nos da una fundamentación de las matemáticas con una interpretación
+computacional clara.
+
+Una refinación de esas teorías para producir una fundamentación también
+constructivista de las matemáticas es el Cálculo de Construcciones
+(Calculus of constructions, COC) desarrollado por *Thierry Coquand* y
+*Gérard Huet*, que finalmente dará lugar al asistente de demostraciones
+*COQ*, desarrollado por el INRIA. El
+[[https://en.wikipedia.org/wiki/Lambda_cube][*\lambda-cubo*]] es un
+diagrama para exponer cómo este sistema amplía al /cálculo lambda
+tipado/ y al /Sistema $F_\omega$/ que usa Haskell.
+
+-  [[http://ac.els-cdn.com/0890540188900053/1-s2.0-0890540188900053-main.pdf?_tid=3846e956-b301-11e5-8e78-00000aab0f02&acdnat=1451925532_87ac5a8e6a7bd6477746a55c17130f43][Calculus
+   of Constructions - T. Coquand, G. Huet]].
+-  [[https://coq.inria.fr/][The Coq proof assistant - INRIA]]
+
+* Wikipedia contributions
+:PROPERTIES:
+:TITLE:    Wikipedia contributions
+:HUGO_TAGS: libre
+:HUGO_TOPICS: libre
+:HUGO_FILE: post/wikipediacontributions.md
+:HUGO_DATE: [2016-10-29 Sat 15:15]
+:END:
+
+The majority of my math-related contributions to Wikipedia are translations from the English language
+Wikipedia to the Spanish one:
+
+ * [[https://es.wikipedia.org/wiki/Lema_de_escisi%25C3%25B3n][Lema de escisión]]
+ * [[https://es.wikipedia.org/wiki/Compleci%25C3%25B3n_(%25C3%25A1lgebra)][Compleción (Álgebra)]]
+ * [[https://es.wikipedia.org/wiki/Lema_de_la_serpiente][Lema de la serpiente]]
+ * [[https://es.wikipedia.org/wiki/M%25C3%25B3nada_(teor%25C3%25ADa_de_categor%25C3%25ADas)][Mónada (teoría de categorías)]]
+ * [[https://es.wikipedia.org/wiki/Funtor_Tor][Funtor Tor]]
+ * [[https://es.wikipedia.org/wiki/M%25C3%25B3dulo_simple][Módulo simple]]
+
+* Yoneda lemma
+:PROPERTIES:
+:TITLE:    Yoneda lemma
+:HUGO_TAGS: math
+:HUGO_TOPICS: math
+:HUGO_FILE: post/yonedalemma.md
+:HUGO_DATE: [2017-02-17 Fri 15:18]
+:END:
+
+** Lema de Yoneda
+Sea $G : {\cal C} \longrightarrow \mathtt{Set}$ un funtor covariante. Fijado $A \in obj({\cal C})$, tenemos una
+biyección entre las transformaciones naturales del funtor $Hom(A,-)$ a
+$G$ y los elementos del conjunto $G(A)$:
+
+\[
+y : Nat(Hom_{\cal C}(A,-),G) \longrightarrow G(A)
+\]
+
+Que viene dada por $y(\tau) = \tau_A(1_A)$, la imagen de la identidad por la
+transformación natural.
+
+*** Demostración
+Dado cualquier $p$ crearemos la única transformación natural que cumple
+$\eta_A(1_A) = p$. Por definición de transformación natural, sabemos que debe
+cumplir el siguiente diagrama conmutativo:
+
+#+attr_html: :width 500px
+https://raw.githubusercontent.com/M42/m42.github.io/images/yonedaproof1.jpeg
+
+Lo que deja determinado a cualquier $\eta_B(f)$, y por tanto a toda la función:
+
+\[\eta_B(f) = \eta_B(f\circ id) = Gf(\eta_A(id_A)) = Gf(p) \]
+
+Nos falta comprobar que la función así construida es de hecho una 
+transformación natural. Es decir, que cumple el siguiente diagrama
+conmutativo:
+
+#+attr_html: :width 500px
+https://raw.githubusercontent.com/M42/m42.github.io/images/yonedaproof2.jpeg
+
+Y de hecho, dado cualquier elemento $f \in Hom(A,B)$ tenemos:
+
+\[Gg\circ \eta(f) = Gg \circ Gf(p) = G(g\circ f)(p) = \eta(g\circ f)\]
+
+** Lema de Yoneda (caso contravariante)
+Si aplicamos Yoneda sobre $\mathcal{C}^{op}$, dado $G : {\cal C} \longrightarrow \mathtt{Set}$ *contravariante*
+y fijado $A \in obj({\cal C})$; existe una biyección entre las transformaciones naturales
+del funtor $Hom(-,A)$ a $G$ y los elementos del conjunto $G(A)$:
+
+\[
+y : Nat(Hom_{\cal C}(-,A),G) \longrightarrow G(A)
+\]
+
+Que viene de nuevo dada por $y(\tau) = \tau_A(1_A)$.
+
+** Referencias y enlaces
+[1] J. Rotman, An Introduction to Homological Algebra.
+
+[2] Bartosz Milewski's Programming Cafe.
+    [[https://bartoszmilewski.com/2015/09/01/the-yoneda-lemma/][The Yoneda Lemma]]
+
+[3] The Catsters.
+    [[https://www.youtube.com/watch?v=TLMxHB19khE][Representables and Yoneda 3]]
+
+* About
+:PROPERTIES:
+:TITLE:    About
+:HUGO_TAGS: about
+:HUGO_TOPICS: about
+:HUGO_FILE: about.md
+:HUGO_DATE: [2017-07-17 Mon 15:23]
+:END:
+
+Hi! I'm *Mario Román*. I study Mathematics and Computer science in
+Granada. I also write in [[http://tux.ugr.es/dgiim/][LibreIM]].
+
+  - GitHub: [[https://github.com/M42][@M42]].
+  - CV: [[https://m42.github.io/friggeri-cv-a4/cv.pdf][My CV on Github pages]].
+  - Email: [[mailto:mromang08+blog@gmail.com][mromang08+blog@gmail.com]]
+
+All the articles in this page are licensed in [[https://creativecommons.org/licenses/by-sa/2.0/][Creative Commons BY-SA 2.0]]
+unless otherwise specified.
+
+The theme of this blog was forked from
+[@jrutheiser/hugo-lithium-theme](https://github.com/jrutheiser/hugo-lithium-theme)
+and modified by [Yihui Xie](https://github.com/yihui/hugo-lithium-theme).
+It is powered by Emacs org-mode and Hugo.
