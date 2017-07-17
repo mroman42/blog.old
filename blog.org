@@ -3,6 +3,39 @@
 #+EMAIL:       mromang08@gmail.com
 #+OPTIONS:     toc:nil
 
+* Blog con org-mode y hugo
+:PROPERTIES:
+:TITLE:    Blog con org-mode y hugo
+:HUGO_TAGS: emacs
+:HUGO_TOPICS: emacs
+:HUGO_FILE: post/blogorgmode.md
+:HUGO_DATE: [2017-07-17 Mon 18:12]
+:END:
+
+Este blog se genera a partir de un sólo archivo de org-mode. Eso hace
+que sea más cómodo escribirlo y actualizarlo después. Usa internamente
+
+ * una versión de [[https://github.com/yihui/hugo-lithium-theme][hugo-lithium-theme]] modificada por [[https://github.com/yihui][Yihui Xie]];
+ * y el método que se describe en [[http://www.holgerschurig.de/en/emacs-blog-from-org-to-hugo/][este post]] para implementar la
+   exportación de subárboles independientes de org-mode.
+
+Sólo ha sido necesario un pequeño cambio para conseguir que las
+fórmulas matemáticas en MathJax funcionen. Concretamente he añadido
+al código estas líneas
+
+#+BEGIN_SRC emacs-lisp
+(save-excursion 
+ (goto-char (point-min)) (replace-string "\\\(" "\\\\\(")
+ (goto-char (point-min)) (replace-string "\\\)" "\\\\\)")
+ (goto-char (point-min)) (replace-string "\\\[" "\\\\\[")
+ (goto-char (point-min)) (replace-string "\\\]" "\\\\\]")
+)
+#+END_SRC
+
+Anteriormente usaba org-page, que funcionó siempre bastante bien salvo
+algún ligero problema con los temas y lo complejo que era en ocasiones
+actualizarlo o escribir algo nuevo.
+
 * Aprendiendo emacs
 :PROPERTIES:
 :TITLE:    Aprendiendo emacs
