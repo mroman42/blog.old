@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Haskell on A Hugo website</title>
+    <title>Haskell on M42</title>
     <link>/tags/haskell/</link>
-    <description>Recent content in Haskell on A Hugo website</description>
+    <description>Recent content in Haskell on M42</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 24 Dec 2016 00:00:00 +0000</lastBuildDate>
