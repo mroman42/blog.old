@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Haskell on A Hugo website</title>
+    <link>/tags/haskell/</link>
+    <description>Recent content in Haskell on A Hugo website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 24 Dec 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/haskell/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mónadas</title>
+      <link>/2016/12/24/m%C3%B3nadas/</link>
+      <pubDate>Sat, 24 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/12/24/m%C3%B3nadas/</guid>
+      <description>A monad is just a monoid in the category of endofunctors, what&amp;rsquo;s the problem?
+&amp;#x2013; Philip Walder (apócrifa) en A Brief, Incomplete, and Mostly Wrong History of programming languages
+ Prerrequisitos Este artículo requiere un conocimiento previo de Haskell, o al menos, de otro lenguaje de programación funcional. Puedes consultar nuestra introducción a Haskell con recursos para iniciarte en el lenguaje.
+Por otro lado, para la segunda parte del artículo es recomendable conocimiento previo sobre teoría de categorías.</description>
+    </item>
+    
+    <item>
+      <title>Distribuciones discretas con mónadas</title>
+      <link>/2016/12/10/distribuciones-discretas-con-m%C3%B3nadas/</link>
+      <pubDate>Sat, 10 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/12/10/distribuciones-discretas-con-m%C3%B3nadas/</guid>
+      <description>El modelo Como parte de una serie de ejemplos sobre uso de mónadas, he escrito un poco de código para modelar distribuciones discretas usando mónadas.
+Por un lado, usa un generador congruencial lineal para generar números aleatorios; y por otro, usa la mónada State para pasar una semilla aleatoria de una función a otra que me permita seguir generado números aleatorios.
+Por último, aporta un método que deriva Show para probar las distribuciones y dibujar un histograma de cualquiera de ella.</description>
+    </item>
+    
+  </channel>
+</rss>

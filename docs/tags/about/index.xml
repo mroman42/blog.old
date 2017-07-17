@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>About on A Hugo website</title>
+    <link>/tags/about/</link>
+    <description>Recent content in About on A Hugo website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 17 Jul 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/about/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Hi! I&amp;rsquo;m Mario Román. I study Mathematics and Computer science in Granada. I also write in LibreIM.
+ GitHub: @M42. CV: My CV on Github pages. Email: mromang08+blog@gmail.com  All the articles in this page are licensed in Creative Commons BY-SA 2.0 unless otherwise specified.
+The theme of this blog was forked from @jrutheiser/hugo-lithium-theme and modified by Yihui Xie. It is powered by Emacs org-mode and Hugo.</description>
+    </item>
+    
+  </channel>
+</rss>

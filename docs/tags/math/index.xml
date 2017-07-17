@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Math on A Hugo website</title>
+    <link>/tags/math/</link>
+    <description>Recent content in Math on A Hugo website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 18 Feb 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/math/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Projective, injective and flat modules</title>
+      <link>/2017/02/18/projective-injective-and-flat-modules/</link>
+      <pubDate>Sat, 18 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/02/18/projective-injective-and-flat-modules/</guid>
+      <description>Definitions An R-module \(D\) is:
+ Projective if \(Hom(D, -)\) is an exact functor. Injective if \(Hom(-,D)\) is an exact functor. Flat if \(D \otimes -\) is an exact functor.  Characterization We know that \(Hom(D,-)\) and \(Hom(-,D)\) are left-exact and that \(D\otimes -\) is right-exact; so for them to be exact, we only need:
+ A module \(D\) is projective when every \(f : B \longrightarrow C\) surjective induces \((f\circ_) :Hom(D,B) \longrightarrow Hom(D,C)\) surjective.</description>
+    </item>
+    
+    <item>
+      <title>Yoneda lemma</title>
+      <link>/2017/02/17/yoneda-lemma/</link>
+      <pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/02/17/yoneda-lemma/</guid>
+      <description>Lema de Yoneda Sea \(G : {\cal C} \longrightarrow \mathtt{Set}\) un funtor covariante. Fijado \(A \in obj({\cal C})\), tenemos una biyección entre las transformaciones naturales del funtor \(Hom(A,-)\) a \(G\) y los elementos del conjunto \(G(A)\):
+\[ y : Nat(Hom_{\cal C}(A,-),G) \longrightarrow G(A) \]
+Que viene dada por \(y(\tau) = \tau_A(1_A)\), la imagen de la identidad por la transformación natural.
+Demostración Dado cualquier \(p\) crearemos la única transformación natural que cumple \(\eta_A(1_A) = p\).</description>
+    </item>
+    
+  </channel>
+</rss>

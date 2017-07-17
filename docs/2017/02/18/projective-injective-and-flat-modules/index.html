@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25.1" />
+
+
+<title>Projective, injective and flat modules - A Hugo website</title>
+<meta property="og:title" content="Projective, injective and flat modules - A Hugo website">
+
+
+
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/fonts.css" media="all">
+<link rel="stylesheet" href="../../../../css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="../../../../" class="nav-logo">
+    <img src="../../../../images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="../../../../about/">About</a></li>
+    
+    <li><a href="https://github.com/m42">GitHub</a></li>
+    
+    <li><a href="https://mastodon.social/@m42">Mastodon</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1 min read</span>
+    
+
+    <h1 class="article-title">Projective, injective and flat modules</h1>
+
+    
+    <span class="article-date">2017/02/18</span>
+    
+
+    <div class="article-content">
+      
+
+<h1 id="definitions">Definitions</h1>
+
+<p>An R-module \(D\) is:</p>
+
+<ol>
+<li><strong>Projective</strong> if \(Hom(D, -)\) is an exact functor.</li>
+<li><strong>Injective</strong> if \(Hom(-,D)\) is an exact functor.</li>
+<li><strong>Flat</strong> if \(D \otimes -\) is an exact functor.</li>
+</ol>
+
+<h1 id="characterization">Characterization</h1>
+
+<p>We know that \(Hom(D,-)\) and \(Hom(-,D)\) are left-exact and that \(D\otimes -\) is right-exact; so for them to be exact, we only need:</p>
+
+<ul>
+<li><p>A module \(D\) is <strong>projective</strong> when every \(f : B \longrightarrow C\) surjective induces \((f\circ_) :Hom(D,B) \longrightarrow Hom(D,C)\) surjective.</p>
+
+<p><img src="//raw.githubusercontent.com/M42/m42.github.io/images/projective.jpeg" alt="img" /></p></li>
+
+<li><p>A module \(D\) is <strong>injective</strong> when \(f : A \longrightarrow B\) surjective induces \((_\circ f) : Hom(B,D) \longrightarrow Hom(A,D)\) surjective.</p>
+
+<p><img src="//raw.githubusercontent.com/M42/m42.github.io/images/injective.jpeg" alt="img" /></p></li>
+
+<li><p>A module \(D\) is <strong>flat</strong> when \(f : A \longrightarrow B\) injective induces \(f&rsquo; : D\otimes A \longrightarrow D \otimes B\) injective.</p></li>
+</ul>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="../../../../index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="../../../../images/hugo-logo.png" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+    
+<script src="../../../../js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

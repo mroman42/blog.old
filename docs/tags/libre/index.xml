@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Libre on A Hugo website</title>
+    <link>/tags/libre/</link>
+    <description>Recent content in Libre on A Hugo website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 29 Oct 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/libre/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Wikipedia contributions</title>
+      <link>/2016/10/29/wikipedia-contributions/</link>
+      <pubDate>Sat, 29 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/10/29/wikipedia-contributions/</guid>
+      <description>The majority of my math-related contributions to Wikipedia are translations from the English language Wikipedia to the Spanish one:
+ Lema de escisión Compleción (Álgebra) Lema de la serpiente Mónada (teoría de categorías) Funtor Tor Módulo simple  </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on A Hugo website</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on A Hugo website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 23 Mar 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Capturando links en org-mode</title>
+      <link>/2017/03/23/capturando-links-en-org-mode/</link>
+      <pubDate>Thu, 23 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/03/23/capturando-links-en-org-mode/</guid>
+      <description>Capturando links El objetivo de este post es describir el proceso que uso para capturar links desde Firefox y almacenarlos en un archivo de org-mode, que puede leerse luego desde el propio navegador.
+Org-capture La primera parte será activar org-capture y org-protocol en Emacs. org-capture puede ser usado también para escribir pequeñas ideas y almacenarlas en ficheros org rápidamente; pero, en este caso, lo usaremos sólo para recibir el link desde Firefox.</description>
+    </item>
+    
+    <item>
+      <title>Projective, injective and flat modules</title>
+      <link>/2017/02/18/projective-injective-and-flat-modules/</link>
+      <pubDate>Sat, 18 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/02/18/projective-injective-and-flat-modules/</guid>
+      <description>Definitions An R-module \(D\) is:
+ Projective if \(Hom(D, -)\) is an exact functor. Injective if \(Hom(-,D)\) is an exact functor. Flat if \(D \otimes -\) is an exact functor.  Characterization We know that \(Hom(D,-)\) and \(Hom(-,D)\) are left-exact and that \(D\otimes -\) is right-exact; so for them to be exact, we only need:
+ A module \(D\) is projective when every \(f : B \longrightarrow C\) surjective induces \((f\circ_) :Hom(D,B) \longrightarrow Hom(D,C)\) surjective.</description>
+    </item>
+    
+    <item>
+      <title>Yoneda lemma</title>
+      <link>/2017/02/17/yoneda-lemma/</link>
+      <pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/02/17/yoneda-lemma/</guid>
+      <description>Lema de Yoneda Sea \(G : {\cal C} \longrightarrow \mathtt{Set}\) un funtor covariante. Fijado \(A \in obj({\cal C})\), tenemos una biyección entre las transformaciones naturales del funtor \(Hom(A,-)\) a \(G\) y los elementos del conjunto \(G(A)\):
+\[ y : Nat(Hom_{\cal C}(A,-),G) \longrightarrow G(A) \]
+Que viene dada por \(y(\tau) = \tau_A(1_A)\), la imagen de la identidad por la transformación natural.
+Demostración Dado cualquier \(p\) crearemos la única transformación natural que cumple \(\eta_A(1_A) = p\).</description>
+    </item>
+    
+    <item>
+      <title>Mónadas</title>
+      <link>/2016/12/24/m%C3%B3nadas/</link>
+      <pubDate>Sat, 24 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/12/24/m%C3%B3nadas/</guid>
+      <description>A monad is just a monoid in the category of endofunctors, what&amp;rsquo;s the problem?
+&amp;#x2013; Philip Walder (apócrifa) en A Brief, Incomplete, and Mostly Wrong History of programming languages
+ Prerrequisitos Este artículo requiere un conocimiento previo de Haskell, o al menos, de otro lenguaje de programación funcional. Puedes consultar nuestra introducción a Haskell con recursos para iniciarte en el lenguaje.
+Por otro lado, para la segunda parte del artículo es recomendable conocimiento previo sobre teoría de categorías.</description>
+    </item>
+    
+    <item>
+      <title>Distribuciones discretas con mónadas</title>
+      <link>/2016/12/10/distribuciones-discretas-con-m%C3%B3nadas/</link>
+      <pubDate>Sat, 10 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/12/10/distribuciones-discretas-con-m%C3%B3nadas/</guid>
+      <description>El modelo Como parte de una serie de ejemplos sobre uso de mónadas, he escrito un poco de código para modelar distribuciones discretas usando mónadas.
+Por un lado, usa un generador congruencial lineal para generar números aleatorios; y por otro, usa la mónada State para pasar una semilla aleatoria de una función a otra que me permita seguir generado números aleatorios.
+Por último, aporta un método que deriva Show para probar las distribuciones y dibujar un histograma de cualquiera de ella.</description>
+    </item>
+    
+    <item>
+      <title>Wikipedia contributions</title>
+      <link>/2016/10/29/wikipedia-contributions/</link>
+      <pubDate>Sat, 29 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/10/29/wikipedia-contributions/</guid>
+      <description>The majority of my math-related contributions to Wikipedia are translations from the English language Wikipedia to the Spanish one:
+ Lema de escisión Compleción (Álgebra) Lema de la serpiente Mónada (teoría de categorías) Funtor Tor Módulo simple  </description>
+    </item>
+    
+    <item>
+      <title>Matemáticas en emacs</title>
+      <link>/2016/09/26/matem%C3%A1ticas-en-emacs/</link>
+      <pubDate>Mon, 26 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/09/26/matem%C3%A1ticas-en-emacs/</guid>
+      <description>Apuntes a ordenador Tomar apuntes de matemáticas con el ordenador es una tarea difícil por la notación (símbolos, letras en otros alfabetos, índices&amp;#x2026;) y la velocidad necesaria. Además, los diagramas, dibujos, flechas o anotaciones no textuales que tomamos parecen imposibles de transcribir fielmente a un fichero.
+Latex permite notación matemática pero no facilita la velocidad (al fin y al cabo, Latex estaría pensado para edición de libros, no para tomar apuntes).</description>
+    </item>
+    
+    <item>
+      <title>Aprendiendo emacs</title>
+      <link>/2016/09/19/aprendiendo-emacs/</link>
+      <pubDate>Mon, 19 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/09/19/aprendiendo-emacs/</guid>
+      <description>Emacs Emacs es un editor de texto construido sobre un intérprete del lenguaje Elisp para hacerlo extensible. Cada acción del editor constituye un comando sobre el intérprete, por lo que podemos reescribir sus comandos o crear nuevos comandos simplemente programando sobre el intérprete.
+Emacs editando este mismo artículo en Markdown
+Emacs sirve como IDE para la mayoría de lenguajes de programación y como editor para programación literaria y ciencia reproducible; se integra con git y con el sistema de archivos y tiene extensiones disponibles para usarse como aplicación para organizar listas de tareas, leer el correo o servir como hoja de cálculo.</description>
+    </item>
+    
+    <item>
+      <title>Ideas de teoría de tipos</title>
+      <link>/2016/01/08/ideas-de-teor%C3%ADa-de-tipos/</link>
+      <pubDate>Fri, 08 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/01/08/ideas-de-teor%C3%ADa-de-tipos/</guid>
+      <description>Los sistemas de tipos tienen su utilidad en las matemáticas. Sirven para modelar una fundamentación de las matemáticas distinta de la usual fundamentación conjuntista; y tienen varias aplicaciones interesantes en lenguajes funcionales y asistentes de demostración. En particular, sobre los tipos se puede definir un álgebra y se pueden representar sistemas lógicos. Vamos a tratar esas aplicaciones referenciando en cada caso artículos donde se exponen en profundidad.
+Inducción estructural La inducción estructural es una generalización de la inducción usual sobre los naturales que la extiende a otras estructuras representables como tipos de un lenguaje funcional.</description>
+    </item>
+    
+    <item>
+      <title>Inducción estructural</title>
+      <link>/2015/03/14/inducci%C3%B3n-estructural/</link>
+      <pubDate>Sat, 14 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/2015/03/14/inducci%C3%B3n-estructural/</guid>
+      <description>Normalmente aplicamos inducción sobre los números naturales, y cuando necesitamos aplicar inducción en otro contexto lo hacemos corresponder con los números naturales. Por ejemplo, si queremos demostrar una propiedad sobre los árboles binarios, la demostraríamos por inducción sobre la altura del árbol. Pero el proceso de llevar todo a los naturales puede ser incómodo, tedioso y puede complicar la demostración innecesariamente. En este post vamos a desarrollar una forma de ampliar la inducción a la estructura de los tipos de datos para simplificar todas esas demostraciones.</description>
+    </item>
+    
+  </channel>
+</rss>

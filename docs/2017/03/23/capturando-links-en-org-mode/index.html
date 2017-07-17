@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25.1" />
+
+
+<title>Capturando links en org-mode - A Hugo website</title>
+<meta property="og:title" content="Capturando links en org-mode - A Hugo website">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="../../../../css/fonts.css" media="all">
+<link rel="stylesheet" href="../../../../css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="../../../../" class="nav-logo">
+    <img src="../../../../images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="../../../../about/">About</a></li>
+    
+    <li><a href="https://github.com/m42">GitHub</a></li>
+    
+    <li><a href="https://mastodon.social/@m42">Mastodon</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">3 min read</span>
+    
+
+    <h1 class="article-title">Capturando links en org-mode</h1>
+
+    
+    <span class="article-date">2017/03/23</span>
+    
+
+    <div class="article-content">
+      
+
+<h1 id="capturando-links">Capturando links</h1>
+
+<p>El objetivo de este post es describir el proceso que uso para capturar links desde Firefox y almacenarlos en un archivo de org-mode, que puede leerse luego desde el propio navegador.</p>
+
+<h1 id="org-capture">Org-capture</h1>
+
+<p>La primera parte será activar <code>org-capture</code> y <code>org-protocol</code> en Emacs. <a href="https://www.gnu.org/software/emacs/manual/html_node/org/Capture.html#Capture">org-capture</a> puede ser usado también para escribir pequeñas ideas y almacenarlas en ficheros org rápidamente; pero, en este caso, lo usaremos sólo para recibir el link desde Firefox.</p>
+
+<pre><code class="language-emacs-lisp">(require 'org-protocol)
+</code></pre>
+
+<p>Lo primero que debemos hacer es definir la plantilla que queremos usar para capturar los links. La sintaxis usada se explica en la <a href="https://www.gnu.org/software/emacs/manual/html_node/org/Template-expansion.html#Template-expansion">documentación</a> de org-mode, así como las opciones que usa después:</p>
+
+<pre><code class="language-emacs-lisp">(setq org-capture-templates
+      (quote (
+              (&quot;x&quot; &quot;org-protocol&quot; entry (file &quot;~/links.org&quot;)
+               &quot;** %c %?&quot; :kill-buffer t :prepend t))))
+</code></pre>
+
+<p>En este caso, guardará los links en un archivo llamado <code>links.org</code> en el directorio <code>home</code>. Pueden añadirse <a href="https://www.gnu.org/software/emacs/manual/html_node/org/Template-elements.html#Template-elements">opciones</a> para explicitar en qué punto exacto del archivo queremos insertar el link una vez lo capturemos.</p>
+
+<h1 id="extensión-de-firefox">Extensión de firefox</h1>
+
+<p>El uso de <code>org-protocol</code> desde Firefox puede gestionarse más detalladamente usando <a href="http://orgmode.org/worg/org-contrib/org-protocol.html#sec-4">marcadores</a> que activen la captura. En nuestro caso, como sólo necesitamos la configuración básica, podemos ahorrarnos este trabajo y dejárselo a la extensión <a href="http://chadok.info/firefox-org-capture/">org-capture for Firefox</a>.</p>
+
+<p>La extensión nos deja elegir en sus opciones si queremos que use una nueva ventana (me parece lo más conveniente y además veremos cómo controlarla luego con i3); la letra asignada a la plantilla (en nuestro caso hemos usado la <code>x</code> en la configuración anterior); y el atajo de teclado para activarla, que por defecto es <code>Ctrl-Alt-r</code>.</p>
+
+<p>Una vez activemos la extensión, podremos capturar enlaces pulsando el atajo.</p>
+
+<h1 id="cerrando-ventanas">Cerrando ventanas</h1>
+
+<p>Un problema menor al usar esta extensión es que crea ventanas de Emacs que no cierra al terminar. Otro problema es que suele crear también un buffer inicial al lado de nuestro buffer de captura. Podemos usar <strong>hooks</strong> para forzarlo a corregir ese comportamiento:</p>
+
+<pre><code class="language-emacs-lisp">(add-hook 'org-capture-mode-hook 'delete-other-windows)
+(add-hook 'org-capture-after-finalize-hook 'delete-frame)
+</code></pre>
+
+<h1 id="integrándolo-en-i3">Integrándolo en i3</h1>
+
+<p>Para los usuarios de i3, puede ser útil poder controlar dónde y cómo se crea la ventana de captura de Emacs. Un ejemplo de configuración es la siguiente, que coloca la ventana como flotante y en el centro de la pantalla; como si fuera un popup:</p>
+
+<pre><code class="language-bash">for_window [class=&quot;Emacs&quot; title=&quot;CAPTURE&quot;] floating enable
+for_window [class=&quot;Emacs&quot; title=&quot;CAPTURE&quot;] resize set 1880 480
+for_window [class=&quot;Emacs&quot; title=&quot;CAPTURE&quot;] move position center
+</code></pre>
+
+<h1 id="mostrando-los-links-en-el-navegador">Mostrando los links en el navegador</h1>
+
+<p>Para que además los links se muestren en el navegador, pueden usarse también <strong>hooks</strong> que se activen al guardado para exportar a HTML. En este post de <a href="https://rafaelleru.github.io/2017/01/22/to_read_list_emacs/">@rafaelleru</a> se explica el proceso en detalle.</p>
+
+<h1 id="un-detalle-sin-solucionar">Un detalle sin solucionar</h1>
+
+<p>En la plantilla de captura, me gustaría poder usar además <code>%^g</code>, que crea un pequeño diálogo donde insertar tags al link que se está guardando. El problema con esto es que, hasta que ese diálogo no ha terminado, no se ejecutan los hooks y el frame no se hace único (ni se reposiciona en i3).</p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="../../../../index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="../../../../images/hugo-logo.png" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/emacs-lisp.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/haskell.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/bash.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

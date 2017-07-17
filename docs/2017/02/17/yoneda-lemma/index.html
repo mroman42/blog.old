@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25.1" />
+
+
+<title>Yoneda lemma - A Hugo website</title>
+<meta property="og:title" content="Yoneda lemma - A Hugo website">
+
+
+
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../../../css/fonts.css" media="all">
+<link rel="stylesheet" href="../../../../css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="../../../../" class="nav-logo">
+    <img src="../../../../images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="../../../../about/">About</a></li>
+    
+    <li><a href="https://github.com/m42">GitHub</a></li>
+    
+    <li><a href="https://mastodon.social/@m42">Mastodon</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">2 min read</span>
+    
+
+    <h1 class="article-title">Yoneda lemma</h1>
+
+    
+    <span class="article-date">2017/02/17</span>
+    
+
+    <div class="article-content">
+      
+
+<h1 id="lema-de-yoneda">Lema de Yoneda</h1>
+
+<p>Sea \(G : {\cal C} \longrightarrow \mathtt{Set}\) un funtor covariante. Fijado \(A \in obj({\cal C})\), tenemos una biyección entre las transformaciones naturales del funtor \(Hom(A,-)\) a \(G\) y los elementos del conjunto \(G(A)\):</p>
+
+<p>\[ y : Nat(Hom_{\cal C}(A,-),G) \longrightarrow G(A) \]</p>
+
+<p>Que viene dada por \(y(\tau) = \tau_A(1_A)\), la imagen de la identidad por la transformación natural.</p>
+
+<h2 id="demostración">Demostración</h2>
+
+<p>Dado cualquier \(p\) crearemos la única transformación natural que cumple \(\eta_A(1_A) = p\). Por definición de transformación natural, sabemos que debe cumplir el siguiente diagrama conmutativo:</p>
+
+<p><img src="//raw.githubusercontent.com/M42/m42.github.io/images/yonedaproof1.jpeg" alt="img" /></p>
+
+<p>Lo que deja determinado a cualquier \(\eta_B(f)\), y por tanto a toda la función:</p>
+
+<p>\[\eta_B(f) = \eta_B(f\circ id) = Gf(\eta_A(id_A)) = Gf(p) \]</p>
+
+<p>Nos falta comprobar que la función así construida es de hecho una transformación natural. Es decir, que cumple el siguiente diagrama conmutativo:</p>
+
+<p><img src="//raw.githubusercontent.com/M42/m42.github.io/images/yonedaproof2.jpeg" alt="img" /></p>
+
+<p>Y de hecho, dado cualquier elemento \(f \in Hom(A,B)\) tenemos:</p>
+
+<p>\[Gg\circ \eta(f) = Gg \circ Gf(p) = G(g\circ f)(p) = \eta(g\circ f)\]</p>
+
+<h1 id="lema-de-yoneda-caso-contravariante">Lema de Yoneda (caso contravariante)</h1>
+
+<p>Si aplicamos Yoneda sobre \(\mathcal{C}^{op}\), dado \(G : {\cal C} \longrightarrow \mathtt{Set}\) <strong>contravariante</strong> y fijado \(A \in obj({\cal C})\); existe una biyección entre las transformaciones naturales del funtor \(Hom(-,A)\) a \(G\) y los elementos del conjunto \(G(A)\):</p>
+
+<p>\[ y : Nat(Hom_{\cal C}(-,A),G) \longrightarrow G(A) \]</p>
+
+<p>Que viene de nuevo dada por \(y(\tau) = \tau_A(1_A)\).</p>
+
+<h1 id="referencias-y-enlaces">Referencias y enlaces</h1>
+
+<p>[1] J. Rotman, An Introduction to Homological Algebra.</p>
+
+<p>[2] Bartosz Milewski&rsquo;s Programming Cafe. <a href="https://bartoszmilewski.com/2015/09/01/the-yoneda-lemma/">The Yoneda Lemma</a></p>
+
+<p>[3] The Catsters. <a href="https://www.youtube.com/watch?v=TLMxHB19khE">Representables and Yoneda 3</a></p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="../../../../index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="../../../../images/hugo-logo.png" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+    
+<script src="../../../../js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

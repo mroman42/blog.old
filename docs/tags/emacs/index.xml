@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Emacs on A Hugo website</title>
+    <link>/tags/emacs/</link>
+    <description>Recent content in Emacs on A Hugo website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 23 Mar 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Capturando links en org-mode</title>
+      <link>/2017/03/23/capturando-links-en-org-mode/</link>
+      <pubDate>Thu, 23 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/03/23/capturando-links-en-org-mode/</guid>
+      <description>Capturando links El objetivo de este post es describir el proceso que uso para capturar links desde Firefox y almacenarlos en un archivo de org-mode, que puede leerse luego desde el propio navegador.
+Org-capture La primera parte será activar org-capture y org-protocol en Emacs. org-capture puede ser usado también para escribir pequeñas ideas y almacenarlas en ficheros org rápidamente; pero, en este caso, lo usaremos sólo para recibir el link desde Firefox.</description>
+    </item>
+    
+    <item>
+      <title>Matemáticas en emacs</title>
+      <link>/2016/09/26/matem%C3%A1ticas-en-emacs/</link>
+      <pubDate>Mon, 26 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/09/26/matem%C3%A1ticas-en-emacs/</guid>
+      <description>Apuntes a ordenador Tomar apuntes de matemáticas con el ordenador es una tarea difícil por la notación (símbolos, letras en otros alfabetos, índices&amp;#x2026;) y la velocidad necesaria. Además, los diagramas, dibujos, flechas o anotaciones no textuales que tomamos parecen imposibles de transcribir fielmente a un fichero.
+Latex permite notación matemática pero no facilita la velocidad (al fin y al cabo, Latex estaría pensado para edición de libros, no para tomar apuntes).</description>
+    </item>
+    
+    <item>
+      <title>Aprendiendo emacs</title>
+      <link>/2016/09/19/aprendiendo-emacs/</link>
+      <pubDate>Mon, 19 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/09/19/aprendiendo-emacs/</guid>
+      <description>Emacs Emacs es un editor de texto construido sobre un intérprete del lenguaje Elisp para hacerlo extensible. Cada acción del editor constituye un comando sobre el intérprete, por lo que podemos reescribir sus comandos o crear nuevos comandos simplemente programando sobre el intérprete.
+Emacs editando este mismo artículo en Markdown
+Emacs sirve como IDE para la mayoría de lenguajes de programación y como editor para programación literaria y ciencia reproducible; se integra con git y con el sistema de archivos y tiene extensiones disponibles para usarse como aplicación para organizar listas de tareas, leer el correo o servir como hoja de cálculo.</description>
+    </item>
+    
+  </channel>
+</rss>
