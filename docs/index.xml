@@ -23,6 +23,16 @@ The theme of this blog was forked from @jrutheiser/hugo-lithium-theme and modifi
     </item>
     
     <item>
+      <title>Blog con org-mode y hugo</title>
+      <link>/2017/07/17/blog-con-org-mode-y-hugo/</link>
+      <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/07/17/blog-con-org-mode-y-hugo/</guid>
+      <description>Este blog se genera a partir de un sólo archivo de org-mode. Eso hace que sea más cómodo escribirlo y actualizarlo después. Usa internamente
+ una versión de hugo-lithium-theme modificada por Yihui Xie; y el método que se describe en este post para implementar la exportación de subárboles independientes de org-mode.  Sólo ha sido necesario un pequeño cambio para conseguir que las fórmulas matemáticas en MathJax funcionen. Concretamente he añadido al código estas líneas</description>
+    </item>
+    
+    <item>
       <title>Capturando links en org-mode</title>
       <link>/2017/03/23/capturando-links-en-org-mode/</link>
       <pubDate>Thu, 23 Mar 2017 00:00:00 +0000</pubDate>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25.1" />
+
+
+<title>Blog con org-mode y hugo - M42</title>
+<meta property="og:title" content="Blog con org-mode y hugo - M42">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="../../../../css/fonts.css" media="all">
+<link rel="stylesheet" href="../../../../css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="../../../../" class="nav-logo">
+    <img src="../../../../images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="../../../../about/">About</a></li>
+    
+    <li><a href="https://github.com/m42">GitHub</a></li>
+    
+    <li><a href="https://mastodon.social/@m42">Mastodon</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1 min read</span>
+    
+
+    <h1 class="article-title">Blog con org-mode y hugo</h1>
+
+    
+    <span class="article-date">2017/07/17</span>
+    
+
+    <div class="article-content">
+      <p>Este blog se genera a partir de un sólo archivo de org-mode. Eso hace que sea más cómodo escribirlo y actualizarlo después. Usa internamente</p>
+
+<ul>
+<li>una versión de <a href="https://github.com/yihui/hugo-lithium-theme">hugo-lithium-theme</a> modificada por <a href="https://github.com/yihui">Yihui Xie</a>;</li>
+<li>y el método que se describe en <a href="http://www.holgerschurig.de/en/emacs-blog-from-org-to-hugo/">este post</a> para implementar la exportación de subárboles independientes de org-mode.</li>
+</ul>
+
+<p>Sólo ha sido necesario un pequeño cambio para conseguir que las fórmulas matemáticas en MathJax funcionen. Concretamente he añadido al código estas líneas</p>
+
+<pre><code class="language-emacs-lisp">(save-excursion 
+ (goto-char (point-min)) (replace-string &quot;\\\\(&quot; &quot;\\\\\\(&quot;)
+ (goto-char (point-min)) (replace-string &quot;\\\\)&quot; &quot;\\\\\\)&quot;)
+ (goto-char (point-min)) (replace-string &quot;\\\\[&quot; &quot;\\\\\\[&quot;)
+ (goto-char (point-min)) (replace-string &quot;\\\\]&quot; &quot;\\\\\\]&quot;)
+)
+</code></pre>
+
+<p>Anteriormente usaba org-page, que funcionó siempre bastante bien salvo algún ligero problema con los temas y lo complejo que era en ocasiones actualizarlo o escribir algo nuevo.</p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="../../../../index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="../../../../images/hugo-logo.png" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/emacs-lisp.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/haskell.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/bash.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="../../../../js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+
