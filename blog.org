@@ -3,6 +3,22 @@
 #+EMAIL:       mromang08@gmail.com
 #+OPTIONS:     toc:nil
 
+* Mikrokosmos 0.3.0
+:PROPERTIES:
+:TITLE:    Mikrokosmos 0.3.0
+:HUGO_TAGS: haskell
+:HUGO_TOPICS: haskell
+:HUGO_FILE: post/mikrokosmos030.md
+:HUGO_DATE: [2017-07-22 Sat 16:55]
+:END:
+Mikrokosmos version 0.3.0 is out! This version comes bundled with a Jupyter
+Notebook kernel, a tutorial on lambda calculus and specific modes for SKI
+combinators.
+
+ * [[https://github.com/m42/mikrokosmos][GitHub repository]].
+ * [[https://m42.github.io/mikrokosmos/][User's guide]].
+ * [[https://github.com/M42/jupyter-mikrokosmos][Jupyter kernel]].
+
 * Blog con org-mode y hugo
 :PROPERTIES:
 :TITLE:    Blog con org-mode y hugo
