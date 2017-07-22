@@ -6,10 +6,20 @@
     <description>Recent content in Posts on M42</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Jul 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 22 Jul 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mikrokosmos 0.3.0</title>
+      <link>/2017/07/22/mikrokosmos-0.3.0/</link>
+      <pubDate>Sat, 22 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/07/22/mikrokosmos-0.3.0/</guid>
+      <description>Mikrokosmos version 0.3.0 is out! This version comes bundled with a Jupyter Notebook kernel, a tutorial on lambda calculus and specific modes for SKI combinators.
+ GitHub repository. User&amp;rsquo;s guide. Jupyter kernel.  </description>
+    </item>
     
     <item>
       <title>Blog con org-mode y hugo</title>
