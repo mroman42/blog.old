@@ -50,7 +50,7 @@ Sobre el uso de las derivadas en el álgebra de tipos existe un resultado de **C
 
 La aplicación de los tipos a la lógica y las demostraciones parte del isomorfismo de Curry-Howard, que relaciona los sistemas de tipos con sistemas lógicos. El sistema más simple donde puede apreciarse el isomorfismo es el [**cálculo lambda tipado**](https://en.wikipedia.org/wiki/Typed_lambda_calculus), que es isomorfo a la [**deducción natural**](https://en.wikipedia.org/wiki/Natural_deduction). La deducción natural es un ejemplo de lógica intuicionista, lo que en la práctica quiere decir que *no* (!) se tienen el *tercio excluso* y la *doble negación* como axiomas:
 
-\\[ A \wedge \neg A\\]
+\\[ A \vee \neg A\\]
 
 \\[ \neg \neg A \implies A \\]
 
