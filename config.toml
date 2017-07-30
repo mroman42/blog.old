@@ -27,7 +27,7 @@ publishDir = "docs"
     # options for highlight.js (version, additional languages, and theme)
     highlightjsVersion = "9.11.0"
     highlightjsCDN = "//cdn.bootcss.com"
-    highlightjsLang = ["emacs-lisp", "haskell", "bash"]
+    highlightjsLang = ["lisp", "haskell", "bash", "latex"]
     highlightjsTheme = "github"
 
     MathJaxCDN = "//cdn.bootcss.com"

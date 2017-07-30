@@ -16,7 +16,7 @@ Tomar apuntes de matemáticas con el ordenador es una tarea difícil por la nota
 
 **org-mode** tiene internamente un lenguaje de marcado similar al de markdown, con la ventaja para el usuario de Emacs de que está adaptado precisamente para Emacs. Permite escribir fórmulas en Latex y exportar luego a `.tex` y `.pdf`, controlando las opciones de Latex.
 
-Una fórmula en Latex puede escribirse directamente en **org-mode** incluyéndola entre `\\( ... \\)`, si está dentro de una línea de texto (como en \\(i \ast x = x\\)); o entre `\\[ ... \\]`, cuando queremos que se muestre aparte del texto. Ejemplo:
+Una fórmula en Latex puede escribirse directamente en **org-mode** incluyéndola entre \\(\mathtt{\backslash\left( \dots \backslash\right)}\\), si está dentro de una línea de texto (como en \\(i \ast x = x\\)); o entre \\(\backslash[\ \dots\ \backslash]\\), cuando queremos que se muestre aparte del texto. Por ejemplo:
 
 \\[ \sum_{n=0}^\infty \frac{1}{2^n} \\]
 
@@ -53,28 +53,27 @@ Ahora estoy escribiendo sobre álgebra homológica y teoría de categorías, as�
 
 Para las secuencias exactas, por ejemplo, tengo simplemente una plantilla con `yasnippet`, que me deja incluirlas escribiendo `complex_` y pulsando `<tab>`:
 
-```text
-# -*- mode: snippet -*-
-# name: complex
-# key: complex_
-#--
-\\[ $1 \overset{$6}\longrightarrow 
-$2 \overset{$7}\longrightarrow 
-$3 \overset{$8}\longrightarrow 
-$4 \overset{$9}\longrightarrow 
-$5 \\]
-```
+    # -*- mode: snippet -*-
+    # name: complex
+    # key: complex_
+    #--
+    \begin{aligned*} $1 \overset{$6}\longrightarrow 
+    $2 \overset{$7}\longrightarrow 
+    $3 \overset{$8}\longrightarrow 
+    $4 \overset{$9}\longrightarrow 
+    $5 \end{aligned*}
 
 Para los diagramas conmutativos, la solución es un poco más compleja. El paquete **tikz** de Latex es muy útil para escribirlos pero es demasiado recargado en sintaxis, así que existe **tikz-cd**, que simplifica su sintaxis para centrarla en diagramas conmutativos. Para usarlo, hay que empezar por incluir en el archivo de configuración `init.el` las siguientes líneas:
 
 ```lisp
-(add-to-list
- 'org-latex-packages-alist '("" "tikz" t))
-(eval-after-load "preview"
-  '(add-to-list
-    'preview-default-preamble
-    "\\PreviewEnvironment{tikzpicture}"
-    t))
+\\(
+     (add-to-list
+      'org-latex-packages-alist '("" "tikz" t))
+     (eval-after-load "preview"
+       '(add-to-list
+         'preview-default-preamble
+         "\\PreviewEnvironment{tikzpicture}"
+         t))
 ```
 
 Y además, en mi caso, tuve que cambiar el programa con el que generaba las imágenes. Por lo menos a mí, me parece funcionar sólo **imagemagick**:

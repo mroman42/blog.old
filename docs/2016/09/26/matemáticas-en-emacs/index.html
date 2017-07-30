@@ -81,7 +81,7 @@
 
 <p><strong>org-mode</strong> tiene internamente un lenguaje de marcado similar al de markdown, con la ventaja para el usuario de Emacs de que está adaptado precisamente para Emacs. Permite escribir fórmulas en Latex y exportar luego a <code>.tex</code> y <code>.pdf</code>, controlando las opciones de Latex.</p>
 
-<p>Una fórmula en Latex puede escribirse directamente en <strong>org-mode</strong> incluyéndola entre <code>\\( ... \\)</code>, si está dentro de una línea de texto (como en \(i \ast x = x\)); o entre <code>\\[ ... \\]</code>, cuando queremos que se muestre aparte del texto. Ejemplo:</p>
+<p>Una fórmula en Latex puede escribirse directamente en <strong>org-mode</strong> incluyéndola entre \(\mathtt{\backslash\left( \dots \backslash\right)}\), si está dentro de una línea de texto (como en \(i \ast x = x\)); o entre \(\backslash[\ \dots\ \backslash]\), cuando queremos que se muestre aparte del texto. Por ejemplo:</p>
 
 <p>\[ \sum_{n=0}^\infty \frac{1}{2^n} \]</p>
 
@@ -114,26 +114,27 @@
 
 <p>Para las secuencias exactas, por ejemplo, tengo simplemente una plantilla con <code>yasnippet</code>, que me deja incluirlas escribiendo <code>complex_</code> y pulsando <code>&lt;tab&gt;</code>:</p>
 
-<pre><code class="language-text"># -*- mode: snippet -*-
+<pre><code># -*- mode: snippet -*-
 # name: complex
 # key: complex_
 #--
-\\[ $1 \overset{$6}\longrightarrow 
+\begin{aligned*} $1 \overset{$6}\longrightarrow 
 $2 \overset{$7}\longrightarrow 
 $3 \overset{$8}\longrightarrow 
 $4 \overset{$9}\longrightarrow 
-$5 \\]
+$5 \end{aligned*}
 </code></pre>
 
 <p>Para los diagramas conmutativos, la solución es un poco más compleja. El paquete <strong>tikz</strong> de Latex es muy útil para escribirlos pero es demasiado recargado en sintaxis, así que existe <strong>tikz-cd</strong>, que simplifica su sintaxis para centrarla en diagramas conmutativos. Para usarlo, hay que empezar por incluir en el archivo de configuración <code>init.el</code> las siguientes líneas:</p>
 
-<pre><code class="language-lisp">(add-to-list
- 'org-latex-packages-alist '(&quot;&quot; &quot;tikz&quot; t))
-(eval-after-load &quot;preview&quot;
-  '(add-to-list
-    'preview-default-preamble
-    &quot;\\PreviewEnvironment{tikzpicture}&quot;
-    t))
+<pre><code class="language-lisp">\\(
+     (add-to-list
+      'org-latex-packages-alist '(&quot;&quot; &quot;tikz&quot; t))
+     (eval-after-load &quot;preview&quot;
+       '(add-to-list
+         'preview-default-preamble
+         &quot;\\PreviewEnvironment{tikzpicture}&quot;
+         t))
 </code></pre>
 
 <p>Y además, en mi caso, tuve que cambiar el programa con el que generaba las imágenes. Por lo menos a mí, me parece funcionar sólo <strong>imagemagick</strong>:</p>
@@ -182,9 +183,10 @@ $5 \\]
 
 
 
-<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/emacs-lisp.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/lisp.min.js"></script>
 <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/haskell.min.js"></script>
 <script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/bash.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/latex.min.js"></script>
 <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
 
 
