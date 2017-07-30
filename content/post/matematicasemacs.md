@@ -66,14 +66,13 @@ Para las secuencias exactas, por ejemplo, tengo simplemente una plantilla con `y
 Para los diagramas conmutativos, la solución es un poco más compleja. El paquete **tikz** de Latex es muy útil para escribirlos pero es demasiado recargado en sintaxis, así que existe **tikz-cd**, que simplifica su sintaxis para centrarla en diagramas conmutativos. Para usarlo, hay que empezar por incluir en el archivo de configuración `init.el` las siguientes líneas:
 
 ```lisp
-\\(
-     (add-to-list
-      'org-latex-packages-alist '("" "tikz" t))
-     (eval-after-load "preview"
-       '(add-to-list
-         'preview-default-preamble
-         "\\PreviewEnvironment{tikzpicture}"
-         t))
+(add-to-list
+ 'org-latex-packages-alist '("" "tikz" t))
+(eval-after-load "preview"
+  '(add-to-list
+    'preview-default-preamble
+    "\\PreviewEnvironment{tikzpicture}"
+    t))
 ```
 
 Y además, en mi caso, tuve que cambiar el programa con el que generaba las imágenes. Por lo menos a mí, me parece funcionar sólo **imagemagick**:

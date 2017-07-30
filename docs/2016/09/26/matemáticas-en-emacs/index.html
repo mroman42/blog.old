@@ -127,14 +127,13 @@ $5 \end{aligned*}
 
 <p>Para los diagramas conmutativos, la solución es un poco más compleja. El paquete <strong>tikz</strong> de Latex es muy útil para escribirlos pero es demasiado recargado en sintaxis, así que existe <strong>tikz-cd</strong>, que simplifica su sintaxis para centrarla en diagramas conmutativos. Para usarlo, hay que empezar por incluir en el archivo de configuración <code>init.el</code> las siguientes líneas:</p>
 
-<pre><code class="language-lisp">\\(
-     (add-to-list
-      'org-latex-packages-alist '(&quot;&quot; &quot;tikz&quot; t))
-     (eval-after-load &quot;preview&quot;
-       '(add-to-list
-         'preview-default-preamble
-         &quot;\\PreviewEnvironment{tikzpicture}&quot;
-         t))
+<pre><code class="language-lisp">(add-to-list
+ 'org-latex-packages-alist '(&quot;&quot; &quot;tikz&quot; t))
+(eval-after-load &quot;preview&quot;
+  '(add-to-list
+    'preview-default-preamble
+    &quot;\\PreviewEnvironment{tikzpicture}&quot;
+    t))
 </code></pre>
 
 <p>Y además, en mi caso, tuve que cambiar el programa con el que generaba las imágenes. Por lo menos a mí, me parece funcionar sólo <strong>imagemagick</strong>:</p>
