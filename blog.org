@@ -1488,7 +1488,7 @@ isomorfismo es el
 lo que en la práctica quiere decir que /no/ (!) se tienen el /tercio
 excluso/ y la /doble negación/ como axiomas:
 
-$$ A \wedge \neg A$$
+$$ A \vee \neg A$$
 
 $$ \neg \neg A \implies A $$
 
