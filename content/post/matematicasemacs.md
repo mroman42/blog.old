@@ -5,7 +5,7 @@ tags = [ "emacs" ]
 topics = [ "emacs" ]
 +++
 
-*Actualizado a 05 de agosto de 2017.*
+*Actualizado a 06 de agosto de 2017.*
 
 
 # Apuntes a ordenador
@@ -17,18 +17,32 @@ Tomar apuntes de matemáticas con el ordenador es una tarea difícil por lo comp
 
 # Ventajas de org-mode
 
-**org-mode** tiene internamente un lenguaje de marcado similar al de markdown, con la ventaja para el usuario de Emacs de que está adaptado precisamente para Emacs. Permite escribir fórmulas en Latex y exportar luego a `.tex` y `.pdf`, controlando las opciones de Latex.
+**org-mode** tiene internamente un lenguaje de marcado similar al de markdown, con la ventaja para el usuario de Emacs de que está adaptado especialmente al editor. Permite escribir fórmulas en Latex y exportar luego a `.tex` y `.pdf`, controlando las opciones de Latex.
 
 Una fórmula en Latex puede escribirse directamente en **org-mode** incluyéndola entre \\(\mathtt{\backslash\left( \dots \backslash\right)}\\), si está dentro de una línea de texto (como en \\(i \ast x = x\\)); o entre \\(\backslash[\ \dots\ \backslash]\\), cuando queremos que se muestre aparte del texto como en el siguiente ejemplo
 
 \\[ \sum_{n=0}^\infty \frac{1}{2^n}. \\]
 
-Cuando terminamos de escribirla podemos [previsualizarla](http://orgmode.org/worg/org-tutorials/org-latex-preview.html) directamente con `C-c C-x C-l`. Así vamos comprobando que hemos escrito las fórmulas correctamente a costa de acercarnos a un editor [WYSIWYG](https://es.wikipedia.org/wiki/WYSIWYG).
+Cuando terminamos de escribirla podemos [previsualizarla](http://orgmode.org/worg/org-tutorials/org-latex-preview.html) directamente con `C-c C-x C-l`, como si fuera un editor [WYSIWYG](https://es.wikipedia.org/wiki/WYSIWYG).
+
+Si vamos a acabar exportando a latex podemos insertar entornos como los que ofrece la biblioteca de la AMS con
+
+    #+begin_theorem
+    [texto del teorema]
+    #+end_theorem
+
+o incluso definir nuestros propios entornos y usarlos después de la misma forma. Además, también permite la inclusión de bloques de código con
+
+    #+begin_src ruby
+    [código en ruby]
+    #+end_src
+
+en la mayoría de lenguajes de programación y algunos especialmente útiles para matemáticas como `Sage`.
 
 
 # Zoom
 
-Un problema menor (y quizá sólo mío) al configurar todo esto fue que las fórmulas previsualizadas me parecían demasiado pequeñas. Aunque estén en proporción con el texto, cuesta más leerlas; y cuando aumentamos el tamaño del texto con `C-x C-+`, las fórmulas no se amplían con él. Para conseguir que lo hagan hay que incluir otro pequeño truco, mezcla de dos respuestas de [thisirs y Mark](http://emacs.stackexchange.com/questions/3387/how-to-enlarge-latex-fragments-in-org-mode-at-the-same-time-as-the-buffer-text) en Stack Overflow:
+Un problema menor (y quizá sólo mío) al configurar todo esto es que las fórmulas previsualizadas parecen demasiado pequeñas. Aunque estén en proporción con el texto, cuesta más leerlas; y cuando aumentamos el tamaño del texto con `C-x C-+`, las fórmulas no se amplían con él. Para conseguir que lo hagan hay que incluir el siguiente trozo de código en el archivo de configuración de Emacs, mezcla de dos respuestas de [thisirs y Mark](http://emacs.stackexchange.com/questions/3387/how-to-enlarge-latex-fragments-in-org-mode-at-the-same-time-as-the-buffer-text) en Stack Overflow:
 
 ```lisp
 (defun update-org-latex-fragment-scale ()
@@ -41,6 +55,8 @@ Un problema menor (y quizá sólo mío) al configurar todo esto fue que las fór
  'text-scale-mode-hook
  'update-org-latex-fragment-scale)
 ```
+
+Después de volver a cargar el archivo de configuración, las fórmulas nuevas deberían volver a ajustarse con el texto.
 
 
 # Aumentando la velocidad de escritura

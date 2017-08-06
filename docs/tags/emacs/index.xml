@@ -37,7 +37,7 @@ Org-capture La primera parte será activar org-capture y org-protocol en Emacs. 
       <pubDate>Mon, 26 Sep 2016 00:00:00 +0000</pubDate>
       
       <guid>/2016/09/26/matem%C3%A1ticas-en-emacs/</guid>
-      <description>Actualizado a 05 de agosto de 2017.
+      <description>Actualizado a 06 de agosto de 2017.
 Apuntes a ordenador Tomar apuntes de matemáticas con el ordenador es una tarea difícil por lo complejo que es transcribir la notación (símbolos, letras en otros alfabetos, índices&amp;#x2026;) y la velocidad necesaria. Además, los diagramas, dibujos, flechas o anotaciones no textuales que tomamos parecen imposibles de transcribir fielmente a un fichero.
 Latex permite notación matemática pero no facilita la velocidad (al fin y al cabo, Latex estaría pensado para edición de libros, no para tomar apuntes).</description>
     </item>
