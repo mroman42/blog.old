@@ -3,9 +3,9 @@
 #+EMAIL:       mromang08@gmail.com
 #+OPTIONS:     toc:nil
 
-* Try mikrokosmos!
+* Try Mikrokosmos!
 :PROPERTIES:
-:TITLE:    Try mikrokosmos!
+:TITLE:    Try Mikrokosmos!
 :HUGO_TAGS: haskell, lambda
 :HUGO_TOPICS: haskell
 :HUGO_FILE: post/trymikrokosmos.md

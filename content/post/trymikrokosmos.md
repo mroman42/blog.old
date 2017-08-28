@@ -1,5 +1,5 @@
 +++
-title = "Try mikrokosmos!"
+title = "Try Mikrokosmos!"
 date = "2017-08-28"
 tags = [ "haskell", "lambda" ]
 topics = [ "haskell" ]
