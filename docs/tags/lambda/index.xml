@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lambda on M42</title>
+    <link>/tags/lambda/</link>
+    <description>Recent content in Lambda on M42</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 28 Aug 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/lambda/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Try mikrokosmos!</title>
+      <link>/2017/08/28/try-mikrokosmos/</link>
+      <pubDate>Mon, 28 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/08/28/try-mikrokosmos/</guid>
+      <description>.CodeMirror { border: 1px solid #eee; height: auto; overflow-y: hidden; } .CodeMirror-scroll { height: auto; overflow-y: hidden; overflow-x: auto; } .mikrojs-console { height: auto; } pre { box-shadow: 0px 0px 1px #eee; }  Thanks to GHCJS and Codemirror, you can now try the Mikrokosmos lambda interpreter in your browser. Press the evaluate button below!
+# Lambda expressions are written with \ or λ, as in (λx.</description>
+    </item>
+    
+  </channel>
+</rss>
