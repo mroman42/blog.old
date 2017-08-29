@@ -63,7 +63,7 @@ swap = \m.(snd m, fst m)
 swap
 
 # Gentzen-style deduction trees
-@@ \z.(fst z,snd z)</script>
+@@ \z.(snd z,fst z)</script>
 </div>
 #+END_EXPORT
 

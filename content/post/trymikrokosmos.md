@@ -52,7 +52,7 @@ swap = \m.(snd m, fst m)
 swap
 
 # Gentzen-style deduction trees
-@@ \z.(fst z,snd z)</script>
+@@ \z.(snd z,fst z)</script>
 </div>
 
 With this interpreter on my toolkit, I plan to write tutorials on the &lambda;-calculus and the Curry-Howard isomorphism soon. Stay tuned!
