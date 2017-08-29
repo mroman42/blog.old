@@ -44,16 +44,15 @@ Thanks to [GHCJS](https://github.com/ghcjs/ghcjs) and [Codemirror](http://codemi
 
 # Libraries available
 plus 2 3
-sum (cons 1 (cons 2 (cons 3 nil)))</script>
-</div>
+sum (cons 1 (cons 2 (cons 3 nil)))
 
-It supports untyped &lambda;-calculus, as in the image above, and simply typed &lambda;-calculus, as in the following example.
-
-<div class="mikrojs-console">
-<script type="text/mikrokosmos">
+# Untyped, but also simply-typed λ-calculus
 :types on
 swap = \m.(snd m, fst m)
-swap</script>
+swap
+
+# Gentzen-style deduction trees
+@@ \z.(fst z,snd z)</script>
 </div>
 
 With this interpreter on my toolkit, I plan to write tutorials on the &lambda;-calculus and the Curry-Howard isomorphism soon. Stay tuned!

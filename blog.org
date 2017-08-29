@@ -55,19 +55,15 @@ interpreter in your browser. Press the *evaluate* button below!
 
 # Libraries available
 plus 2 3
-sum (cons 1 (cons 2 (cons 3 nil)))</script>
-</div>
-#+END_EXPORT
+sum (cons 1 (cons 2 (cons 3 nil)))
 
-It supports untyped \lambda-calculus, as in the image above, and simply typed
-\lambda-calculus, as in the following example.
-
-#+BEGIN_EXPORT HTML
-<div class="mikrojs-console">
-<script type="text/mikrokosmos">
+# Untyped, but also simply-typed λ-calculus
 :types on
 swap = \m.(snd m, fst m)
-swap</script>
+swap
+
+# Gentzen-style deduction trees
+@@ \z.(fst z,snd z)</script>
 </div>
 #+END_EXPORT
 
