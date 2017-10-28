@@ -62,7 +62,7 @@ for_window [class="Emacs" title="CAPTURE"] move position center
 
 # Mostrando los links en el navegador
 
-Para que además los links se muestren en el navegador, pueden usarse también **hooks** que se activen al guardado para exportar a HTML. En este post de [@rafaelleru](https://rafaelleru.github.io/rafaelleru.github.io/post/to_read_list_emacs/) se explica el proceso en detalle.
+Para que además los links se muestren en el navegador, pueden usarse también **hooks** que se activen al guardado para exportar a HTML. En este post de [@rafaelleru](https://rafaelleru.github.io/blog/to_read_list_emacs/) se explica el proceso en detalle.
 
 
 # Un detalle sin solucionar
